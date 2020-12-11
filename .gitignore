@@ -12,3 +12,7 @@
 *~
 .DS_Store
 Thumbs.db
+
+# for vscode & LaTeX Workshop
+out_tmp/
+.vscode
