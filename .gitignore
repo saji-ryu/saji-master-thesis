@@ -16,3 +16,4 @@ Thumbs.db
 # for vscode & LaTeX Workshop
 out_tmp/
 .vscode
+__latexindent_temp.tex
