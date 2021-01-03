@@ -1,376 +1,138 @@
-\chapter{本テンプレートの使い方}
+\chapter{研究背景}
 \label{chap:background}
 
-本章では、本テンプレートの具体的な使用方法を解説する。基本的には、{\tt main.tex} を上から順に修正していけばよいだけ。 
+本章では既存のARナビゲーションシステムの現状と、その問題点を整理する。
+
+\newpage
+
+
+\section{ARによるヘルプ・ナビゲーションシステム}
+ARによる表示をヘルプやナビゲーションシステムに利用する研究はは90年代はじめから存在する。
+初期の有名な例としてはプリンタのメンテナンス情報をARで表示するプロトタイプである、KARMA\cite{10.1145/159544.159587}や大学構内の案内をARで表示するナビゲーションシステムである A Touring Machine\cite{629922}が挙げられる。
+これらはヘッドマウントディスプレイを利用したものであるが当時のヘッドマウントディスプレイは非常に大型で性能の限界もあり実用的とは言えないものであった。
+
+その後2000年代になりモバイル端末が普及するとGPSと方位などの情報をもとにカメラを通して周囲の情報をディスプレイに表示するアプリケーションが現れるようになった。
+代表的なものとしてWikitude\cite{wikitube}が挙げられる。
+
+
+\section{ARによるヘルプ・ナビゲーションの現状}
+\label{current}
+ARによるヘルプ・ナビゲーションを利用し、実用化しているシステムを紹介し、その現状を解説する。
+
+\subsection{GoogleMapのARナビ機能}
+Google \footnote{\textsf{https://google.com}}は2018年のGoogleI/O 2018で自社の開発する地図アプリケーションGoogleMap\footnote{https://www.google.com/maps} にAR機能が追加されることを発表し、翌2019年5月にARナビゲーション機能としてα版をリリースした。
+この機能ではGPSによる位置情報や方位情報、カメラからの画像情報などをもとに図\ref{fig:googleMapAr}のようなAR表示での道案内を表示する事が可能である。
+本アプリケーションはカメラで取得した周囲の景色による補正からかなり高精度なAR表示を提供するが提供するが、用途はあくまでもあくまでも目的地までの経路案内に限られている。
+またGPSの届かいない場所やGoogleStreetViewなどに景色の登録がない施設では利用ができないと言うデメリットが存在している。
+
+\begin{figure}[h]
+  \begin{center}
+      \includegraphics[width=60mm]{images/google-maps-ar-mode.png}
+  \end{center}
+  \caption{GoogleMapでのAR表示} \label{fig:googleMapAr}
+\end{figure}
+
+\subsection{遺跡・史跡のARナビゲーションアプリ}
+また日本国内の史跡ではマーカーベースのAR案内アプリケーションが複数存在しているしている。
+殆どのものが史跡の近くにマーカーを設置し、そこから解説や当時の様子を再現したCGを描くというものである。
+今回は一例として松山城址でのナビゲーションアプリである 攻略 松山城 \footnote{https://www.cadcenter.co.jp/works/archives/98} を紹介する。
+このアプリは松山城の歴史や仕組みを解説するARナビゲーションアプリである。
+図\ref{fig:matsuyama_marker}のような専用のマーカーをアプリで読み込むことで図\ref{fig:matsuyama_ar}のように解説したい場所にARで動画のサムネイルを表示する。
+このようなアプリの場合表示したい場所ごとに図\ref{fig:matsuyama_marker}のような大きなマーカーを設置しなければならないと言う問題点がある。
+また実際の運用を考えると専用のマーカーとアプリを利用しているため、多くのマーカー付近でアプリをダウンロードするための案内が別途必要になり汎用性があるとは言い難い。
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=70mm]{images/matsuyama_marker.jpg}
+    \caption{専用のマーカー} \label{fig:matsuyama_marker}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/matsuyama_ar.png}
+    \caption{ARでの案内} \label{fig:matsuyama_ar}
+  \end{minipage}
+\end{figure}
+
+
+\section{ARによるヘルプ・ナビゲーションの問題点}
+\label{problems}
+前節で述べた現状を元に既存のARによるヘルプ・ナビゲーションシステムの問題点を整理する。
+ARのナビゲーションシステムには以下のような問題点がある。
+
+\begin{itemize}
+  \item 立ち上げるまでのインタラクションが面倒
+  
+  前節の「遺跡・史跡のARナビゲーションアプリ」のようにマーカーベースのARナビゲーションでは設置された「マーカーを元にアプリを選択」、「起動」、「カメラでマーカーを中心に収める」という3ステップが必要になる。
+  GPSと方位情報から位置測位を行うアプリケーションの場合はこのような手順は必要ないが、後述するように精度や用途か限られるという問題がある。
+  
+  \item 位置測位の方法によって精度や用途が大きく限られる
+  
+  ARでのナビゲーションを行う際に多く用いられる位置測位の方法は、1)マーカーを使うもの と 2)GPSによるの座標検知と方位情報をあわせて利用するもの の2通りに大別される。
+  1)の場合その場での精度は高いが、ある程度の距離からカメラで十分認識できるサイズのマーカーを設置する必要がある。
+  2)の場合特別な設備は必要ないが精度での疑問が残ることに加えGPS電波の届かない屋内での利用が限定される。
+  前節で挙げたGoogleMapのAR機能ではGPSや方位情報に加えGoogleが撮影した道路の画像を元に補正を行い、精度を挙げているが撮影されていない屋内での利用ができないという問題点は残る。
+
+  \item 情報の登録・編集が面倒
+  
+  ARで単に目的の位置を表示したり、決め打ったデータを表示するARナビゲーションアプリは多いが、情報の登録や編集の簡易さに焦点を置いた物は少ない。
+  ARでの表示したい情報は常に変化する可能性があり、増加していくことが予想される中で一般ユーザーが気軽に情報を登録編集できる環境を整えることは急務と言える。
+
+  \item 関連情報を参照・管理することができていない
+  
+  ARでの表示する情報が増えるに従ってそれらを互いに参照したり、ドメインごとに管理するニーズは高まっていくと考える。
+  しかしながら既存のアプリケーションではARで表示した情報同士を互いに参照して関連情報を表示したり、特定の分野でフィルターすることが難しい。
+
+  \item 汎用性のあるアプリケーションがない
+  上記のように「情報の登録・編集が面倒」、「関連情報を参照・管理することができていない」という問題点から特定の目的や分野に限ったARナビゲーションアプリは存在するものの、分野や目的を横断した汎用的ARナビゲーションは開発されていない。
+  その結果目的や施設ごとにアプリケーションをユーザーが切り替える必要があり、ARナビゲーションアプリが増えるほどユーザの負担は大きくなる。
+  さらに目的や施設ごとにアプリケーションと情報が独立してしまうことで分野を横断したつながりを表現できないという問題点も生まれる。
+
+\end{itemize}
+
+
+\section{テキストや画像の進化}
+前節で述べたとおりARによるヘルプ・ナビゲーションには課題が多いが、ナビゲーションに利用しているテキストや画像などのメディアは計算機の進化とともに多くの問題点を克服している。
+
+計算機上で利用されているテキストは、文字から内容を検索することが可能なため 文書の参照や管理が格段に行いやすく、
+あらゆる文書の作成が電子化されたテキストに置き換えられるようになった。
+またWebやハイパーリンク等の技術によってより参照しやすくなったほか、別の文書を引用する等の再利用が可能になった。
+さらにハイパーリンクを含んだ文書を手軽に作成・編集できるWiki\cite{Leuf2001TheWW}が登場したことでより柔軟・活発なテキストによる知見の共有や情報の再利用が実現された。
+
+同様に画像や地図などのメディアも電子化とwebの進歩により参照や管理が格段に行いやすくなった。
+SNSや画像の管理が行えるクラウドウェアの普及により誰しもが写真を撮影し容易にweb上にアップロード/公開することが可能になり、公開された画像はURLによって一意に参照することができることから画像の再利用性は大きく高まった。
+またGoogleMapのように、地理情報システム(GIS : Geographic Information System)がweb上で誰でも検索・参照可能な形で公開されることで位置情報や地理情報を参照することが容易になった。
 
+このような文書以外のメディアの進化に合わせ、近年の文書作成システムやWikiシステムでなどは画像/音声/動画/地図といったマルチメディアを自在に埋め込むことができるようになっている。
 
-\section{テンプレートの構成}
 
-このテンプレートは、表\ref{tb:files}のファイルで構成されている。
+\section{NFC技術とインタラクション}
+ARでのナビゲーションシステムには自身の位置情報やその場のコンテキスト情報などが不可欠であり、一般的にそのような情報を瞬時に取得することは難しい。
+一方NFCタグには以下のような特徴から実世界においてその場のコンテキスト情報や設置されたものの情報を記述するのに便利である。
 
-\begin{table}[htbp]
-  \caption{構成ファイル}
-  \label{tb:files}
-  \begin{center}\begin{tabular}{c|l}
-    \hline
-    ファイル名&用途\\\hline\hline
-    {\tt main.tex}&メインのファイル。これを編集していく\\\hline
-    {\tt thesis.sty}&論文のスタイルを定義したファイル。基本的には手は加えない\\\hline
-    {\tt *.tex}&{\tt main.tex}に{\tt include}されるファイル群\\\hline
-    {\tt *.eps}&画像ファイル\\\hline
-    {\tt main.bib}&参考文献用のBibTeXファイル\\\hline
-    {\tt Makefile}&Makefile。次節以降で説明\\\hline
-    {\tt .gitignore}&Git用設定ファイル\\\hline
-  \end{tabular}\end{center}
-\end{table}
+\begin{itemize}
+  \item 電源がいらない
+  \item 非常に薄く、小型
+  \item IDやURLなどを記録するには十分な記憶容量を持つ
+  \item 一枚あたり10円前後と安価
+\end{itemize}
 
-\section{コンパイル}
-このテンプレートの\LaTeX ファイルをコンパイルしてPDFファイルを生成するには、ターミナルを開いて以下のようにする。
+近年では多くのモバイル端末にNFCタグの読み取り機能が搭載されており、一般的なNFCタグであれば誰でも書き込まれた情報を瞬時に読み取ることができる。
+さらに書き込むデータ形式によっては、モバイル端末でNFCタグの読み取るだけでwebページを開いたり、アプリを起動することが可能である。
 
-\begin{itembox}[l]{コマンド実行例}
-\begin{verbatim}
-% make
-\end{verbatim}
-\end{itembox}
+このようなNFCタグの特徴は、既存の用途である決済や在庫管理、家電操作などに加えナビゲーションシステムを補助するシステムとして有効であると考える。
 
-こうすることで、\verb|platex|コマンド、\verb|pbibtex|コマンド、\verb|platex|コマンド2回、\verb|dvipdfmx|コマンドが全て実行され、{\tt main.pdf}が生成される。
+また一般的なNFCタグは読み取る際に、読み取る機器をNFCタグにかなり近づける必要がある。
+この技術的制約は一般的にデメリットとして捉えられがちであるが、一方でNFCタグを読み取ったタイミングでのユーザーの持つ端末の位置はNFCタグとほぼ接していると確定できることになる。
+つまりNFCタグに位置情報をもたせれば非常に少ない誤差でユーザの持つ端末をの位置を確定できることになる。
+この特徴は第\ref{problems}節で述べた問題点の一つであるNFCの位置測位の問題を解決するものである。
 
-コンパイルによって生成されたファイルを全て消すには、以下のようにする。
 
-\begin{itembox}[l]{コマンド実行例}
-\begin{verbatim}
-% make clean
-\end{verbatim}
-\end{itembox}
-
-\section{設定}
-
-以下、{\tt main.tex}に対して行うべき設定を、このファイルの中に書いてある順に沿って説明する。
-
-\subsection{論文全体の言語の設定}
-\label{sec:lang}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\japanesetrue	% 論文全体を日本語で書く（英語で書くならコメントアウト）
-\end{verbatim}
-\end{itembox}
-
-ここでは論文全体の言語を設定する。日本語に設定すれば、『章』『目次』『謝辞』などが日本語で出力されて、行頭のインデントなども日本語の仕様になる。英語にした場合は、これらはそれぞれ『Chapter』『Table of Contents』『Acknowledgment』な体裁になる。インデントも行間も、英語用の設定が適用される。
-
-\verb|\japanesetrue| をコメントアウトしなければ日本語に、コメントアウトすれば英語に設定される。
-
-
-\subsection{余白の設定}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\bindermode	% バインダ用余白設定
-\end{verbatim}
-\end{itembox}
-
-このテンプレートの出力はA4用紙。ここではこれの四辺の余白を設定する。
-
-最終的にバインダーで綴じて提出する場合、余白を左右対称にしてしまうと、見かけ上のバランスがとても悪くなる。これを解消するため、あらかじめ左側の余白を大きく取っておく。
-
-\verb|\bindermode| をコメントアウトしなければ左綴じ用の余白に、コメントアウトすれば左右対称の余白に設定される。
-
-両面印刷の場合、偶数ページと奇数ページで余白を広くとるべき側が違うので、\verb|documentclass| でこれを設定する。
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-% 両面印刷の場合。余白を綴じ側に作って右起こし。
-\documentclass[a4j,twoside,openright,11pt]{jreport}
-% 片面印刷の場合。
-%\documentclass[a4j,11pt]{jreport}
-\end{verbatim}
-\end{itembox}
-
-両面印刷の場合は \verb|twoside| を使用する。\verb|openright| を使うと章のはじまりが必ず右側のページに来るようになる。
-
-\subsection{論文情報の設定}
-\label{sec:meta}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-% 日本語情報（必要なら）
-\jclass  {修士論文}                             % 論文種別
-\jtitle    {修士論文用 \LaTeX\ テンプレート}    % タイトル。改行する場合は\\を入れる
-\juniv    {慶應義塾大学大学院}                  % 大学名
-\jfaculty  {政策・メディア研究科}               % 学部、学科
-\jauthor  {ほげ山 ふう助}                       % 著者
-\jhyear  {24}                                   % 平成○年度
-\jsyear  {2012}                                 % 西暦○年度
-\jkeyword  {\LaTeX、テンプレート、修士論文}     % 論文のキーワード
-\jproject{インタラクションデザインプロジェクト} %プロジェクト名
-\jdate{2013年1月}
-
-% 英語情報（必要なら）
-\eclass  {Master's Thesis}                            % 論文種別
-\etitle    {A \LaTeX Template for Master Thesis}      % タイトル。改行する場合は\\を入れる
-\euniv  {Keio University}                             % 大学名
-\efaculty  {Graduate School of Media and Governance}  % 学部、学科
-\eauthor  {Fusuke Hogeyama}                           % 著者
-\eyear  {2012}                                        % 西暦○年度
-\ekeyword  {\LaTeX, Templete, Master Thesis}          % 論文のキーワード
-\eproject{Interaction Design Project}                 %プロジェクト名
-\edate{January 2013}
-\end{verbatim}
-\end{itembox}
-
-ここでは論文のタイトルや著者の氏名などのメタデータを記述する。ここで書いたデータは、表紙とアブストラクトのページに使われる。必ずしも日本語と英語の両方を設定しなければいけないわけではなくて、自分が必要とする方だけ記述すればよい。
-
-タイトルが長過ぎる場合は、表紙やアブストラクトのページでは自動で折り返して出力される。もし改行位置を自分で指定したい場合は、その場所に \verb|\\| を入力する。
-
-
-\section{出力}
-
-\verb|\begin{document}| から \verb|\end{document}| に記述した部分が、実際に{\tt DVI}（最終的には{\tt PDF}）ファイルとして出力される。
-
-\subsection{外部ファイルの読み込み（{\tt include}）}
-
-出力部分の具体的な説明の前に、外部ファイルを読み込む方法を説明する。
-
-\verb|\begin{document}| から \verb|\end{document}| の間では、\verb|\include| コマンドを使うことで、別の {\tt *.tex} ファイルを読み込ませられる。 
-
-\begin{itembox}[l]{{\tt include}しない場合}
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\begin{document}
-  \begin{jabstract}
-  ほげほげ
-  \end{jabstract}
-\end{document}
-\end{verbatim}
-\end{itembox}
-\end{itembox}
-
-\begin{itembox}[l]{{\tt include}する場合}
-\begin{minipage}{0.5\hsize}
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\begin{document}
-\include{01} % 01.texをinclude
-\end{document}
-\end{verbatim}
-\end{itembox}
-\end{minipage}
-\begin{minipage}{0.5\hsize}
-\begin{itembox}[l]{{\tt 01.tex}}
-\begin{verbatim}
-\begin{jabstract}
-ほげほげ
-\end{jabstract}
-\end{verbatim}
-\end{itembox}
-\end{minipage}
-\end{itembox}
-
-{\tt include}しない場合とする場合を比較するとこのとおり。どちらも出力結果は一緒。{\tt include}する場合は、読み込ませたい箇所に、読み込ませたい{\tt *.tex}ファイルの名前を、拡張子を除いて \verb|\include| コマンドで書けばよい。
-
-\verb|\include| コマンドを用いるか用いないかは、たぶん文書量や個人の好みに依る。例えば章ごとに別のファイルにしておけば、修正箇所を探すときの手間が多少は省けるかもしれない。Gitで人と共有しつつ校正を頼むときにもファイルが分かれていたほうがコンフリクトを起こしにくい。
-
-
-\subsection{表紙の出力}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\ifjapanese
-  \jmaketitle    % 表紙（日本語）
-\else
-  \emaketitle    % 表紙（英語）
-\fi
-\end{verbatim}
-\end{itembox}
-
-最初に、表紙を出力する。
-
-\verb|\jmaketitle| が実行されると日本語の表紙が、\verb|\emaketitle| が実行されると英語の表紙がそれぞれ出力される。日本語の表紙には、第\ref{sec:meta}節で設定したうちの日本語の情報が、英語の表紙には同節で設定したうち英語の情報が、それぞれ参照されて、表記される。
-
-デフォルトでは第\ref{sec:lang}説で設定した言語の表紙のみが出力されるようになっている。
-
-\subsection{アブストラクトの出力}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\include{00_abstract}	% アブストラクト。要独自コマンド、include先参照のこと
-\end{verbatim}
-\end{itembox}
-
-表紙の次は、アブストラクト。
-
-アブストラクトを出力するには、出力したい位置に、指定のコマンドを用いて文章を書き下せばよい。{\tt main.tex}に直接書いてもよいし、先述した \verb|\include| コマンドを利用して{\tt include}してもよい。
-
-\verb|\begin{jabstract}| から \verb|\end{jabstract}| の間に書いた文章が日本語のアブストラクトとして、\verb|\begin{eabstract}| から \verb|\end{eabstract}| の間に書いた文章が英語のアブストラクトとして、それぞれ独立したページに出力される。
-
-アブストラクトのページには、論文のタイトルやキーワードなどが、第\ref{sec:meta}節で設定した情報をもとにして自動で表記される。
-
-日本語か英語のどちらか一方のみでよい場合は、不要な言語の方のコマンドを削除すればよい。これは、\verb|\begin| と \verb|\end| というコマンド自身も含めて削除する、ということで、\verb|\begin| と \verb|\end| の間を空っぽにするという意味ではないので注意。
-
-
-
-\subsection{目次類の出力}
-\label{sec:toc}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\tableofcontents	% 目次
-\listoffigures		% 表目次
-\listoftables		% 図目次
-\end{verbatim}
-\end{itembox}
-
-アブストラクトの次に、目次。文書の目次、図の目次、表の目次の三種類。
-
-目次類を出力するには、出力したい位置に指定のコマンドを書けばよい。
-
-これらのコマンドは、コンパイル時点での一時ファイル\footnote{{\tt *.toc}、{\tt *.lof}、{\tt *.lot}}の情報を、目次として体裁を整えて出力するもの。一時ファイルは、\verb|\begin{document}| から \verb|\end{document}| の間の章や節、図や表をコンパイルするときに、ついでに情報を取得しておいて生成される。
-
-つまり気をつけなければいけないのは、コンパイルを一回しただけでは、一時ファイルが最新の状態に更新されるだけで、肝心の目次は正しい情報では出力されないということ。目次類を正しい情報で出力するには、最低二回のコンパイルが必要。一回目のコンパイルで一時ファイルが最新の情報に更新されて、二回目のコンパイルで初めて、その最新の一時ファイルの情報をもとに目次が出力される。
-
-だから、文書に何らかの修正をして保存したあとは、最低でも二回、連続してコンパイルしないといけないことに注意する。
-
-図や表を一つも使用していない場合は、目次名のみが書かれた空白のページが出力される。もしこれが不要な場合は、該当するコマンドをコメントアウトすればよい。
-
-
-\subsection{本文の出力}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\include{01}	% 本文1
-\include{02}	% 本文2
-\include{03}	% 本文3
-\include{04}	% 本文4
-\end{verbatim}
-\end{itembox}
-
-目次に続いて、論文のメイン、本文を記述する。アブストラクトと同様で、{\tt main.tex}に直接書くか、\verb|\include| コマンドを利用して別に用意したファイルを{\tt include}する。
-
-本文の書き方は、第\ref{chap:latex}章で詳しく説明する。
-
-
-\subsection{謝辞の出力}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\include{90_acknowledgment}	% 謝辞。要独自コマンド、include先参照のこと
-\end{verbatim}
-\end{itembox}
-
-本文のあとには、謝辞を出力する。\verb|begin{acknowledgment}| から \verb|end{acknowledgment}| の間に書いた文章が、謝辞として独立したページに出力される。アブストラクトや本文と同じで、{\tt main.tex}に直接書いてもよいし、\verb|\include| コマンドを利用して{\tt include}してもよい。
-
-
-\subsection{参考文献の出力}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\include{91_bibliography}	% 参考文献。要独自コマンド、include先参照のこと
-\end{verbatim}
-\end{itembox}
-
-謝辞に続いて、参考文献を出力する。
-
-参考文献リストは、\verb|\begin{bib}| から \verb|\end{bib}| の間に、\verb|\bibitem| コマンドを使って書く。
-
-BibTeXを使う場合は、以下のようにする。
-
-\begin{itembox}[l]{{\tt 91\_bibliography.tex}}
-\begin{verbatim}
-\begin{bib}[100]
-\bibliography{main}
-\end{bib}
-\end{verbatim}
-\end{itembox}
-
-こうすると、\verb|main.bib|から使用した参考文献のみを抽出して出力してくれる。\verb|main.bib|の中身は以下のようになっていて、気の利いた論文検索サイトであればBibTeXをコピペできるようになっているので簡単に作れるはず。
-
-
-\begin{itembox}[l]{{\tt 91\_bibliography.tex}}
-\begin{verbatim}
-@article{hoge09,
-    author  = "ほげ山太郎 and ほげ山次郎",
-    yomi    = "ほげやまたろう",
-    title   = "ほげほげ理論のHCI分野への応用",
-    journal = "ほげほげ学会論文誌",
-    volume  = "31",
-    number  = "3",
-    pages   = "194-201",
-    year    = "2009",
-}
-@inproceedings{hoge08,
-    author     = "Taro Hogeyama and Jiro Hogeyama",
-    title      = "The Theory of Hoge",
-    booktitle  = "The Proceedings of The Hoge Society",
-    year       = "2008"
-}
-\end{verbatim}
-\end{itembox}
-
-
-以下は、BibTeXを使わないで手で書く例。
-
-\begin{itembox}[l]{{\tt 91\_bibliography.tex}}
-\begin{verbatim}
-@article{hoge09,
-    author  = "ほげ山太郎 and ほげ山次郎",
-    yomi    = "ほげやまたろう",
-    title   = "ほげほげ理論のHCI分野への応用",
-    journal = "ほげほげ学会論文誌",
-    volume  = "31",
-    number  = "3",
-    pages   = "194-201",
-    year    = "2009",
-}
-@inproceedings{hoge08,
-    author     = "Taro Hogeyama and Jiro Hogeyama",
-    title      = "The Theory of Hoge",
-    booktitle  = "The Proceedings of The Hoge Society",
-    year       = "2008"
-}
-\end{verbatim}
-\end{itembox}
-
-
-英語の文献の場合、慣例的に書誌名をイタリック体にすることが多いらしい。
-
-\begin{itembox}[l]{{\tt 91\_bibliography.tex}}
-\begin{verbatim}
-\begin{bib}[100]
-\begin{thebibliography}{#1}
-% \bibitem{参照用名称}
-%   著者名： 
-%   \newblock 文献名，
-%   \newblock 書誌情報，出版年．
-
-\bibitem{hoge09}
-  ほげ山太郎，ほげ山次郎：
-  \newblock ほげほげ理論のHCI分野への応用，
-  \newblock ほげほげ学会論文誌，Vol.31，No.3，pp.194-201，2009．
-
-\bibitem{hoge08}
-  Taro Hogeyama, Jiro Hogeyama:
-  \newblock The Theory of Hoge,
-  \newblock {\it The Proceedings of The Hoge Society}, 2008.
-\end{thebibliography}
-\end{bib}
-\end{verbatim}
-\end{itembox}
-
-\verb|\bibitem| コマンド中、参照用名称は、本文から参考文献を参照するときに使うので、忘れずに書いておく。参照文献を本文中に参照するときには、\verb|\cite{参照用名称}| のように書けばよい。例えば、この文の末尾には \verb|\cite{hoge09}| と書いてあるので、自動で対応する番号が振られる\cite{hoge09}\cite{hoge08}。
-
-参考文献リストの番号付けと、本文で参照したときの番号の挿入は、全部が自動で行われる。ただしこれも、第\ref{sec:toc}節で説明した目次の出力と同じで、一時ファイルを生成してからの挿入なので、正しく出力するには最低でも二回のコンパイルが必要。BibTeXを使用する場合は、\verb|platex|コマンドのあと\verb|pbibtex|コマンドを実行し、さらに2回\verb|platex|コマンドを実行するといいらしい。
-
-
-
-\subsection{付録の出力}
-
-\begin{itembox}[l]{{\tt main.tex}}
-\begin{verbatim}
-\appendix
-\include{92_appendix}		% 付録
-\end{verbatim}
-\end{itembox}
-
-必要であれば、論文の最後には付録を出力する。
-
-\verb|\appendix| コマンド以降に書いたものは、すべて付録として扱われる。付録部分の書き方は通常の本文とまったく同じで、\verb|\appendix| コマンド以降に書くだけで勝手に付録用の体裁で出力される。
+\section{まとめ}
+ARをナビゲーションとして利用するアイデアは以前から存在し、実用段階に来ているプロダクトも増えてきている。
+ただし第\ref{problems}節に上げた問題点を解決できていないため、汎用的なヘルプ・ナビゲーションとして利用されるに至っていない。
+一方でナビゲーションに利用しているテキストや画像などのメディアは計算機上で積極的に応用されており、ハイパーリンクやWiki等の技術によって参照や再利用がより行いやすくなった。
+また近年多くのモバイル端末に搭載されているNFC技術には第\ref{problems}節であげた問題点の一部を克服する可能性がある。
+したがってARの正確な位置測位とコンテキスト情報の取得にNFCの技術を利用しつつ、ARで表示する情報の管理にWikiの手法を取り入れることで第\ref{problems}節に挙げた問題を解決できると考える。
+次章では上記のようなARナビゲーションシステムが持つ問題点を解決し、次世代のARナビゲーションシステム「HypAR Touch」を提案する。
