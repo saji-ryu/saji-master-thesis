@@ -33,11 +33,24 @@
 本システムの大きな特徴としてwikiを利用することにより情報を階層化せずに関連情報を探索できる点が挙げられる。
 自分の興味のある近隣施設をリンクによって探索することが可能になっている。
 
-例えば神保町で本システムを利用した場合、ウィンタースポーツ用品店を選択すれば、「スノーボード」「スキー」といったいったリンクが出現する。
+例えば神保町で本システムを利用した場合、ウィンタースポーツ用品店を選択すれば、「スノーボード」「スキー」といったいったリンクが出現する(図\ref{fig:ar_navigation_jibotyo_ski})。
 ウィンタースポーツ用品店を周りたい場合はこれらのリンクを選択することでウィンタースポーツに関連する施設の情報を見ることができる。
 
-またその後食事をを取りたくなった場合は同じタグにタッチし飲食店をクリックすることで「ラーメン」「カレー」等のリンクが出現し自身の食べたいものを絞り込みながら探索できる。
+またその後食事をを取りたくなった場合は同じタグにタッチし飲食店をクリックすることで「ラーメン」「カレー」等のリンクが出現し自身の食べたいものを絞り込みながら探索できる(図\ref{fig:ar_navigation_jibotyo_lunch})。
 このように様々な施設の情報が混在していてもリンクをクリックしていくことで自分の求める情報を探索できるため、非常に拡張性の高いシステムになりうる。
+
+\begin{figure}[htbp]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=70mm]{images/wip2.jpg}
+    \caption{案内の様子} \label{fig:ar_navigation_jibotyo_ski}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=70mm]{images/wip2.jpg}
+    \caption{出口だけの案内} \label{fig:ar_navigation_jibotyo_lunch}
+  \end{minipage}
+\end{figure}
 
 
 \section{学習教材としての利用}
@@ -52,7 +65,16 @@ wikiはwikipediaに代表されるように膨大な史実や地理情報を整�
 この機能によって実際の場所にいなくとも関連情報を元に視点を切り替えながら史跡を見ることが可能である。
 
 \section{リンクを利用した柔軟な記法}
-WIP
+本システムでは位置情報を記載したScrapboxページを作成することでAR情報を登録することができるが、それに加えて、登録されたAR情報のリンクを利用したページを作ることも可能である。
+例えば渋谷からSFCのキャンパスまでの経路を記述したい場合は図\ref{fig:route_scrapbox}のように登録した場所などの情報のリンクを利用して記載することができる。
+このようにリンクを並べて配置するだけで図(準備中)のように通るべきポイントがARで表示される。
+この書き方はユーザーによって簡単に行えるだけでなく、並べるリンクが合っていれば表記の揺れにも強いという利点を持っている。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=150mm]{images/route_scrapbox.png}
+  \caption{リンクを利用したルートの表記例} \label{fig:route_scrapbox}
+\end{figure}
 
 
 \section{まとめ}
