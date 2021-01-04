@@ -12,7 +12,7 @@ ARによる表示をヘルプやナビゲーションシステムに利用する
 これらはヘッドマウントディスプレイを利用したものであるが当時のヘッドマウントディスプレイは非常に大型で性能の限界もあり実用的とは言えないものであった。
 
 その後2000年代になりモバイル端末が普及するとGPSと方位などの情報をもとにカメラを通して周囲の情報をディスプレイに表示するアプリケーションが現れるようになった。
-代表的なものとしてWikitude\cite{wikitube}が挙げられる。
+代表的なものとしてWikitude\footnote{\textsf{https://www.wikitude.com/}}が挙げられる。
 
 
 \section{ARによるヘルプ・ナビゲーションの現状}
@@ -20,7 +20,7 @@ ARによる表示をヘルプやナビゲーションシステムに利用する
 ARによるヘルプ・ナビゲーションを利用し、実用化しているシステムを紹介し、その現状を解説する。
 
 \subsection{GoogleMapのARナビ機能}
-Google \footnote{\textsf{https://google.com}}は2018年のGoogleI/O 2018で自社の開発する地図アプリケーションGoogleMap\footnote{https://www.google.com/maps} にAR機能が追加されることを発表し、翌2019年5月にARナビゲーション機能としてα版をリリースした。
+Google \footnote{\textsf{https://google.com}}は2018年のGoogleI/O 2018で自社の開発する地図アプリケーションGoogleMap\footnote{\textsf{https://www.google.com/maps}} にAR機能が追加されることを発表し、翌2019年5月にARナビゲーション機能としてα版をリリースした。
 この機能ではGPSによる位置情報や方位情報、カメラからの画像情報などをもとに図\ref{fig:googleMapAr}のようなAR表示での道案内を表示する事が可能である。
 本アプリケーションはカメラで取得した周囲の景色による補正からかなり高精度なAR表示を提供するが提供するが、用途はあくまでもあくまでも目的地までの経路案内に限られている。
 またGPSの届かいない場所やGoogleStreetViewなどに景色の登録がない施設では利用ができないと言うデメリットが存在している。
@@ -35,14 +35,14 @@ Google \footnote{\textsf{https://google.com}}は2018年のGoogleI/O 2018で自�
 \subsection{遺跡・史跡のARナビゲーションアプリ}
 また日本国内の史跡ではマーカーベースのAR案内アプリケーションが複数存在しているしている。
 殆どのものが史跡の近くにマーカーを設置し、そこから解説や当時の様子を再現したCGを描くというものである。
-今回は一例として松山城址でのナビゲーションアプリである 攻略 松山城 \footnote{https://www.cadcenter.co.jp/works/archives/98} を紹介する。
+今回は一例として松山城址でのナビゲーションアプリである 攻略 松山城 \footnote{\textsf{https://www.cadcenter.co.jp/works/archives/98}} を紹介する。
 このアプリは松山城の歴史や仕組みを解説するARナビゲーションアプリである。
 図\ref{fig:matsuyama_marker}のような専用のマーカーをアプリで読み込むことで図\ref{fig:matsuyama_ar}のように解説したい場所にARで動画のサムネイルを表示する。
 このようなアプリの場合表示したい場所ごとに図\ref{fig:matsuyama_marker}のような大きなマーカーを設置しなければならないと言う問題点がある。
 また実際の運用を考えると専用のマーカーとアプリを利用しているため、多くのマーカー付近でアプリをダウンロードするための案内が別途必要になり汎用性があるとは言い難い。
 
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=70mm]{images/matsuyama_marker.jpg}

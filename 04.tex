@@ -8,7 +8,7 @@
 \section{アプリケーション構成}
 HypAR TouchはARナビゲーションを表示するモバイルアプリケーション、AR情報やNFC情報を永続化しAPIを提供するサーバー、Scrapbox、Gyazo\footnote{\textsf{TODO:todo}},NFCタグで構成される。(図 \ref{fig:application_structure})
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=150mm]{images/application_structure.jpg}
   \caption{構成図} \label{fig:application_structure}
@@ -75,9 +75,16 @@ Gyazoには画像のアップロード・取得等のAPIが揃っており本シ
 また同様にNFC forum\footnote{\textsf{https://nfc-forum.org/}}が策定したデータフォーマットであるNDEF(NFC Data Exchange Format)を利用することでNFC機能を持つ殆どのモバイル端末に対応している。
 NDEFのデータ形式には更に細かく、Text、URI、SmartPosterｍの3つのタイプが存在し、URIタイプで書かれたものは殆どのNFC対応スマートフォンでバックグラウンド読み取りに対応している。
 またAndroidとiOSにはディープリンクと呼ばれる特殊なURIからインストールされたアプリケーションを起動する機能が存在しており、そのURIの形式をCustom URL Schemeと呼ぶ。
-Custom URL Schemeでは図\ref{fig:custom_url_scheme}のように起動するアプリの指定だけでなく、追加の情報を指定することが可能である。
+Custom URL Schemeでは図\ref{fig:custom_url_scheme}のように起動するアプリの指定だけでなく、URIパラメータ利用して追加の情報を指定することが可能である。
 このような特徴を踏まえ、本システムではNFCタグにCustom URL Schemeの形にしたURIをNDEFのURIタイプとして記録している。
 これにより、でモバイル端末側でNFCタグにタッチするだけでアプリの起動及びtagIDの受け渡しが可能となる。
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=150mm]{images/custom_url_scheme.jpg}
+  \caption{Custom URL Scheme} \label{fig:custom_url_scheme}
+\end{figure}
 
 
 \section{NFCによるキャリブレーション}

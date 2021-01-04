@@ -19,7 +19,7 @@
 本研究で提案するARナビゲーションシステムであるHypAR Touchの基本構成と使い方を解説する。
 
 \subsection{基本構成}
-本研究で提案するAARナビゲーションシステムHypAR Touchはモバイル端末向けアプリケーションであるHypAR Touch アプリ(図\ref{fig:HypAR_Touch_mobile})と専用のNFCタグ、WikiであるScrapboxで構成されている。
+本研究で提案するARナビゲーションシステムHypAR Touchはモバイル端末向けアプリケーションであるHypAR Touch アプリと専用のNFCタグ、WikiであるScrapboxで構成されている。
 
 \paragraph*{HypAR Touchアプリ} 
 HypAR TouchアプリはARでのナビゲーションを表示するモバイル端末向けネイティブアプリケーションである。
@@ -59,13 +59,13 @@ Scrapbox(図\ref{fig:scrapbox})はGyazz\cite{Gyazz}をベースにして開発�
 
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=100mm]{images/scrapbox_screen.png}
   \caption{Scrapboxの画面} \label{fig:scrapbox}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=100mm]{images/scrapbox_related_screen.png}
   \caption{Scrapboxの関連ページリスト} \label{fig:scrapbox_related}
@@ -79,13 +79,13 @@ Scrapbox(図\ref{fig:scrapbox})はGyazz\cite{Gyazz}をベースにして開発�
 NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_touch_init_screen}のように登録された情報をARで正しい位置に表示することができる。
 また画面下部にあるスライダー(図\ref{fig:hypar_touch_slider})を右に動かすことでより遠くにある情報がARで見れるようになる。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=100mm]{images/touch_nfc.jpg}
   \caption{NFCタグにタッチする様子} \label{fig:touch_nfc}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=70mm]{images/hypar_touch_init_screen.png}
@@ -104,7 +104,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
 これらの放射状に表示された情報も同じようにカーソルで選択することができる。(\ref{fig:hypar_touch_sub_selected})
 このように関連情報を選択していくことによって興味のある情報をAR上で探索することができる。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=70mm]{images/hypar_touch_hover.png}
@@ -117,7 +117,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
   \end{minipage}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
     \centering
     \includegraphics[width=70mm]{images/hypar_touch_sub_selected.png}
     \caption{関連情報の選択} \label{fig:hypar_touch_sub_selected}
@@ -127,7 +127,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
 上記のようにカーソルをAR情報にあわせた上で選択ボタンを押すと上部には図\ref{fig:hypar_touch_top}のように選択された情報のタイトルの他に「see more」と書かれたボタンが出現する。
 これをクリックすることでAR情報の元となったScrapboxをみることが可能である。(図\ref{fig:hypar_touch_webview})
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=70mm]{images/hypar_touch_top.png}
@@ -144,7 +144,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
 同じようにカーソルをAR情報にあわせた上で選択ボタンを押し、もう一度選択したAR情報にカーソルを持っていくと下部中央のボタンが「移動」に変化する(図\ref{fig:hypar_touch_move_button})
 この移動ボタンを押すと図\ref{fig:hypar_touch_move_map}mapでの移動アニメーションを経て選択された　AR情報がある場所からのビュー(図\ref{fig:hypar_touch_moved})に切り替えることができる。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=70mm]{images/hypar_touch_move_button.png}
@@ -157,7 +157,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
   \end{minipage}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=70mm]{images/hypar_touch_moved.png}
   \caption{移動先での表示} \label{fig:hypar_touch_moved}
@@ -167,7 +167,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
 上記のような選択状態はAR情報のない画面をタップすることで解除できる。
 また選択や移動した履歴情報を常に保存しており、画面下部の「戻る」「進む」ボタン(図\ref{fig:hypar_touch_history_button})で戻ったり進んだりすることができる。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=70mm]{images/hypar_touch_history_button.png}
   \caption{進むボタンと戻るボタン} \label{fig:hypar_touch_history_button}
@@ -199,7 +199,7 @@ AR情報はScrapboxのページと対応しているため、新しくページ�
   \end{lstlisting}
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=120mm]{images/scrapbox_ar_new.png}
   \caption{新しくページを作成した時} \label{fig:scrapbox_ar_new}
@@ -209,13 +209,13 @@ AR情報はScrapboxのページと対応しているため、新しくページ�
 Scrapboxでは画像のURLを\texttt{[]}で囲う、または画像をドラッグ・アンド・ドロップすることで図\ref{fig:scrapbox_thumbnail}のようにページに画像を表示させることができる。
 このようにScrapboxのページに画像を貼ると、一番上にある画像がAR表示でのサムネイルになる。(図\ref{fig:scrapbox_thumbnail_and_ar})
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=120mm]{images/scrapbox_thumbnail.png}
   \caption{Scrapboxに貼り付けた画像} \label{fig:scrapbox_thumbnail}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=120mm]{images/scrapbox_thumbnail_and_ar.png}
   \caption{Scrapbox上の画像とARでの表示} \label{fig:scrapbox_thumbnail_and_ar}
@@ -226,7 +226,7 @@ Scrapboxでは単語を\texttt{[]}で囲うことで同一wiki内ページへの
 他ページヘのハイパーリンクが生成されるとAR表示で関連情報として表示されるようになる。(図\ref{fig:scrapbox_link_and_ar})
 説明に利用した単語を積極的にリンクにすることによって関連する情報を提示することが可能になる。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=120mm]{images/scrapbox_link_and_ar.jpg}
   \caption{Scrapbox上のリンクとARでの表示} \label{fig:scrapbox_link_and_ar}
@@ -237,7 +237,7 @@ NFCタグにはISO/IEC 14443 TypeAに準拠したNTAGを利用する。
 NFCに記録するNFCで情報を記録する際に一般的なNDEFフォーマットで情報を書き込む。
 書き込む情報は図\ref{fig:nfc_uri}のようにCustomURLSchemeに沿ったURIの形式で書き込む。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=120mm]{images/nfc_uri.png}
   \caption{NFCに書き込むURIデータ} \label{fig:nfc_uri}
@@ -252,7 +252,7 @@ NFCに記録するNFCで情報を記録する際に一般的なNDEFフォーマ�
 \end{itemize}
 これらの情報はHypAR Touchアプリ内の登録画面(図\ref{fig:nfc_register_mobile})またはHypAR Touchサーバーが提供する登録画面(図\ref{fig:nfc_register_web})より登録可能である。
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=70mm]{images/nfc_register_mobile.png}
