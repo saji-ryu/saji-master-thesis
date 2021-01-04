@@ -76,15 +76,44 @@ KMLファイルはGoogleMapでの読み込みや作成が可能でありユー�
 \section{AR・VR情報の整理・関連情報推薦にハイパーリンクを利用する研究}
 ARやVRでの情報を整理するためにハイパーリンクを利用すた研究やプロジェクトを紹介する。
 
-\subsection{VAnnotatoR}
-Mehlerらが提案したVAnnotatoR\cite{10.1145/3209542.3209572}は
 
-\subsection{Croquet Project}
-Croquet Project\cite{10.1145/1152399.1152452}はKayらが主導した仮想OS構築プロジェクトであり、
+\begin{figure}[htbp]
+  \centering 
+  \includegraphics[width=150mm]{images/VAnnotatoR.png}
+  \caption{VAnnotatoRでのAR表示} \label{fig:VAnnotatoR}
+\end{figure}
+
+\subsection{VAnnotatoR}
+Mehlerらが提案したVAnnotatoR\cite{10.1145/3209542.3209572}はVR/ARでのテキストや画像などのメディアをハイパーリンクを用いて管理し可視化するフレームワークである。
+図\ref{fig:VAnnotatoR}のように文書や画像の他に3Dモデルや位置情報同士を関連付け、3Dでそのつながりを可視化する。
+さらにユーザーの入力によって表示を変えたり関連付けられた場所ワープするような探索機能を備える。
+
+VannotatoRはホロコーストに関連する資料を整理し、可視化することで歴史を解説するStolperwegeプロジェクトが発端となっている。そのため様々な形式の資料と位置情報を互いに関連づけた上でわかりやすく可視化・ナビゲートすることに主眼をおいている。
+よってハイパーリンクを利用してARで表示する情報を管理し、それら利用して関連情報を提示するという点で本研究と設計が近いが以下の点で異なっている。
+\begin{itemize} 
+  \item ハイパーリンク情報の編集環境に関してwikiのような誰でも入力可能なシステムを導入していない
+  \item ARの表示における位置推定は考慮に入れていない
+  \item HypAR Touchでは文字情報でのみハイパーリンクを形成する
+\end{itemize}
+
+
+% \subsection{Croquet Project}
+% Croquet Project\cite{10.1145/1152399.1152452}はKayらが主導した仮想OS構築プロジェクトであり、
 
 
 \section{NFCをナビゲーションに利用した研究}
 NFC技術を自己位置推定やコンテキスト情報取得などに利用し、ナビゲーションに役立てている研究を紹介する。
 
 \subsection{Development of an Indoor Navigation System Using NFC Technology}
-OzdenizciらはDevelopment of an Indoor Navigation System Using NFC Technology\cite{5954491}で
+OzdenizciらはDevelopment of an Indoor Navigation System Using NFC Technology\cite{5954491}でNFCタグを利用した室内ナビゲーションのプロトタイプ「NFC Internal」を作成している。
+このプロトタイプはNFCタグにタッチすることでユーザーの現在地や向きを把握し、その情報と事前に導入した地図情報から2Dマップでの経路を提示するシステムである。(図\ref{fig:NFC_Internal})
+
+本研究同様、施設内の各所に位置情報の書かれた近距離通信のNFCタグを設置し、タグにタッチされるたびにユーザーの場所と向きを更新している。
+また屋内での位置測位に近距離通信のNFCタグを利用することの利点としてコストが少ない点、正確な位置と向きの情報が得られる点、通信の応答時間が短い点などを挙げており、これらは本研究が主張するNFCタグの採用理由の一部と一致する。
+一方でユーザーへの情報提示が2Dの地図とテキストベースであることと、何度もタグにタッチすることで目的地へ最短でたどり着くことに主眼をおいている点が本研究大きく異なると言える。
+
+\begin{figure}[htbp]
+  \centering 
+  \includegraphics[width=150mm]{images/NFC_Internal.png}
+  \caption{NFC Internalのイメージ} \label{fig:NFC_Internal}
+\end{figure}
