@@ -11,25 +11,14 @@
 本研究に関連する先行研究は大きく以下のように分類できる
 \begin{itemize}
   \item ARをナビゲーションに利用する研究
+  \item ユーザの位置測位及びコンテキスト情報の取得に関する研究
+  \item NFCを用いて情報を取得し、ナビゲーションに応用する研究
   \item AR情報の整理・関連情報推薦にハイパーリンクを利用する研究
-  \item NFCをナビゲーションに利用した研究
 \end{itemize}
 それぞれについて関連性の高いものを紹介した上で本研究との関連性を示す。
 
 \section{ARをナビゲーションに利用する研究}
 ARを地理情報のナビゲーションとして利用する代表的な研究及びシステムを紹介する。
-
-% \subsection{KARMA}
-% FeinerらがKnowledge-based augmented reality\cite{10.1145/159544.159587}で提案したKARMA(図\ref{fig:karma})はレーザープリンターのメンテナンスをARで説明するプロトタイプシステムである。
-% ヘッドマウント・ディスプレイによってレーザープリンターの内部機構に関する情報を提示しメンテナンスを助けるものであった。
-% 位置測位は超音場センサを利用しておりこれらのセンサをすべての対象に取り付ける必要があるという難点があった。
-
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[width=150mm]{images/karma.jpg}
-%   \caption{KARMA} \label{fig:karma}
-% \end{figure}
-
 
 \subsection{A Touring Machine}
 Feinerらが開発したA Touring Machine\cite{629922}(図\ref{fig:a_touring_machine})はヘッドマウント・ディスプレイとスタライスで操作可能な2Dディスプレイで大学のキャンパスの情報を表示するアプリケーションである。
@@ -43,6 +32,42 @@ GPSによる位置情報と磁気センサによる向きの情報からユー�
   \includegraphics[width=150mm]{images/wip.jpg}
   \caption{A Touring Machine} \label{fig:a_touring_machine}
 \end{figure}
+
+
+\subsection{KARMA}
+同じくFeinerらがKnowledge-based augmented reality\cite{10.1145/159544.159587}で提案したKARMA(図\ref{fig:karma})はレーザープリンターのメンテナンスをARで説明するプロトタイプシステムである。
+ヘッドマウント・ディスプレイによってレーザープリンターの内部機構に関する情報を提示しメンテナンスを助けるものであった。
+位置測位は超音波センサを利用しておりこれらのセンサをすべての対象に取り付ける必要があるという難点があった。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=150mm]{images/karma.jpg}
+  \caption{KARMA} \label{fig:karma}
+\end{figure}
+
+
+\subsection{MARS}
+HöllererらによるMARS\cite{MARS}は上記の「A Touring Machine」及び「KARMA」の方式を組み合わせ、屋内と屋外の両方でヘッドマウントディスプレイによるナビゲーションを可能にするプロトタイプである。
+
+
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=150mm]{images/karma.jpg}
+%   \caption{KARMA} \label{fig:karma}
+% \end{figure}
+
+\subsection{NaviCam}
+暦本らによるNaviCam\cite{10.1145/215585.215639}はマーカーをカメラで認識し、マーカー応じてその場に即した説明を手持ちの2Dディスプレイやヘッドマウントディスプレイに提示するシステムである。
+現在主流になっているマーカーベースのARの初期研究であり、青と赤の線で構成されたカラーコードと呼ばれるバーコードを認識することで状況と対象物の位置を把握し、情報を提示している。
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=150mm]{images/wip.jpg}
+  \caption{NaviCam} \label{fig:NaviCam}
+\end{figure}
+
+
 
 
 \subsection{Feature-Based Indoor Navigation Using Augmented Reality}
@@ -79,36 +104,28 @@ KMLファイルはGoogleMapでの読み込みや作成が可能でありユー�
 \end{figure}
 
 
-\section{AR・VR情報の整理・関連情報推薦にハイパーリンクを利用する研究}
-ARやVRでの情報を整理するためにハイパーリンクを利用すた研究やプロジェクトを紹介する。
+
+\section{ユーザの位置測位及びコンテキスト情報の取得に関する研究}
+前節でも挙げたとおりARによるナビゲーションではユーザ位置測位やコンテキスト情報取得には様々な方式が検討されている。
+前節に挙げたARナビゲーションシステムでは検討されなかった位置測位システム及びそれらを比較する研究を紹介する。
 
 
-\begin{figure}[h]
-  \centering 
-  \includegraphics[width=150mm]{images/VAnnotatoR.png}
-  \caption{VAnnotatoRでのAR表示} \label{fig:VAnnotatoR}
-\end{figure}
-
-\subsection{VAnnotatoR}
-Mehlerらが提案したVAnnotatoR\cite{10.1145/3209542.3209572}はVR/ARでのテキストや画像などのメディアをハイパーリンクを用いて管理し可視化するフレームワークである。
-図\ref{fig:VAnnotatoR}のように文書や画像の他に3Dモデルや位置情報同士を関連付け、3Dでそのつながりを可視化する。
-さらにユーザーの入力によって表示を変えたり関連付けられた場所ワープするような探索機能を備える。
-
-VannotatoRはホロコーストに関連する資料を整理し、可視化することで歴史を解説するStolperwegeプロジェクトが発端となっている。そのため様々な形式の資料と位置情報を互いに関連づけた上でわかりやすく可視化・ナビゲートすることに主眼をおいている。
-よってハイパーリンクを利用してARで表示する情報を管理し、それら利用して関連情報を提示するという点で本研究と設計が近いが以下の点で異なっている。
-\begin{itemize} 
-  \item ハイパーリンク情報の編集環境に関してwikiのような誰でも入力可能なシステムを導入していない
-  \item ARの表示における位置推定は考慮に入れていない
-  \item HypAR Touchでは文字情報でのみハイパーリンクを形成する
-\end{itemize}
+\subsection{RSSI based Bluetooth low energy indoor positioning}
+RSSI based Bluetooth low energy indoor positioning\cite{7275525}
 
 
-% \subsection{Croquet Project}
-% Croquet Project\cite{10.1145/1152399.1152452}はKayらが主導した仮想OS構築プロジェクトであり、
+\subsection{Recent Advances in Wireless Indoor Localization Techniques and System}
+Recent Advances in Wireless Indoor Localization Techniques and System\cite{Farid2013}
 
 
-\section{NFCをナビゲーションに利用した研究}
+\section{NFCを用いて情報を取得し、ナビゲーションに応用する研究}
 NFC技術を自己位置推定やコンテキスト情報取得などに利用し、ナビゲーションに役立てている研究を紹介する。
+
+\subsection{Bridging physical and virtual worlds with electronic tags}
+WantらはBridging physical and virtual worlds with electronic tags\cite{10.1145/302979.303111}で
+
+\subsection{GoldFish}
+GoldFish\cite{10.1145/2407696.2407699}は
 
 \subsection{Development of an Indoor Navigation System Using NFC Technology}
 OzdenizciらはDevelopment of an Indoor Navigation System Using NFC Technology\cite{5954491}でNFCタグを利用した室内ナビゲーションのプロトタイプ「NFC Internal」を作成している。
@@ -123,3 +140,46 @@ OzdenizciらはDevelopment of an Indoor Navigation System Using NFC Technology\c
   \includegraphics[width=150mm]{images/NFC_Internal.png}
   \caption{NFC Internalのイメージ} \label{fig:NFC_Internal}
 \end{figure}
+
+
+
+\section{AR・VR情報の整理・関連情報推薦にハイパーリンクを利用する研究}
+ARやVRでの情報を整理するためにハイパーリンクを利用すた研究やプロジェクトを紹介する。
+またハイパーリンク情報によってARとVRをシームレスに統合したシステムについても紹介する。
+
+
+
+\subsection{VAnnotatoR}
+Mehlerらが提案したVAnnotatoR\cite{10.1145/3209542.3209572}はVR/ARでのテキストや画像などのメディアをハイパーリンクを用いて管理し可視化するフレームワークである。
+図\ref{fig:VAnnotatoR}のように文書や画像の他に3Dモデルや位置情報同士を関連付け、3Dでそのつながりを可視化する。
+さらにユーザーの入力によって表示を変えたり関連付けられた場所ワープするような探索機能を備える。
+
+VannotatoRはホロコーストに関連する資料を整理し、可視化することで歴史を解説するStolperwegeプロジェクトが発端となっている。そのため様々な形式の資料と位置情報を互いに関連づけた上でわかりやすく可視化・ナビゲートすることに主眼をおいている。
+よってハイパーリンクを利用してARで表示する情報を管理し、それら利用して関連情報を提示するという点で本研究と設計が近いが以下の点で異なっている。
+\begin{itemize} 
+  \item ハイパーリンク情報の編集環境に関してwikiのような誰でも入力可能なシステムを導入していない
+  \item ARの表示における位置推定は考慮に入れていない
+  \item HypAR Touchでは文字情報でのみハイパーリンクを形成する
+\end{itemize}
+
+\begin{figure}[h]
+  \centering 
+  \includegraphics[width=150mm]{images/VAnnotatoR.png}
+  \caption{VAnnotatoRでのAR表示} \label{fig:VAnnotatoR}
+\end{figure}
+
+\subsection{HyperReal}
+RomeroらによるHyperRealは\cite{10.1145/900051.900055}
+
+\subsection{Croquet Project}
+Croquet Project\cite{10.5555/1009376.1009395}はSmithらが主導した仮想OS構築プロジェクトであり、
+
+\subsection{Annotation authoring in collaborative 3D virtual environments}
+小林らによるAnnotation authoring in collaborative 3D virtual environments\cite{10.1145/1152399.1152452}では
+
+\subsection{MagicBook}
+BillinghurstらによるMagicBook\cite{10.1145/634067.634087}は
+
+
+
+
