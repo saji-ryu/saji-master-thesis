@@ -27,7 +27,7 @@ HypAR TouchアプリはARでのナビゲーションを表示するモバイル�
 NFC読み取り機能を持つAndroid\footnote{\textsf{TODO:todo}}端末とiOS\footnote{\textsf{TODO:todo}}端末に対応しており、現在流通する多くのモバイル端末で利用可能である。
 
 \paragraph*{NFCタグ}
-本システムではモバイル端末の位置情報検出及び提示するナビゲーションの出し分けのためにNFCタグを利用している。
+本システムではモバイル端末の位置情報検出および提示するナビゲーションの出し分けのためにNFCタグを利用している。
 NFCタグにはISO/IEC 14443のTypeA\footnote{\textsf{TODO:todo}}に該当するNFCタグを利用しており、NDEF\footnote{\textsf{TODO:todo}}形式で情報を記録している。
 このタグタイプと情報形式はNFC機能を持つほとんどのモバイル端末で読み取りがサポートされており、アプリを起動していない状態でのバックグラウンド読み取りに対応している。
 さらにタグ内に記録する情報としてCustomURLSchemeを利用することでアプリが起動していない状態でもモバイル端末でNFCにタッチすることでHypAR Touchアプリを起動することが可能となる。
@@ -43,7 +43,7 @@ Scrapbox(図\ref{fig:scrapbox})はGyazz\cite{Gyazz}をベースにして開発�
   
   \item 場所指定に最適なLocation記法
   
-  GoogleMapのURLを貼り付けるだけで地図を埋め込めるLocation記法\footnote{\textsf{https://scrapbox.io/help-jp/Location記法}}と呼ばれる機能があり地理情報を記述するのに適している。
+  Google MapsのURLを貼り付けるだけで地図を埋め込めるLocation記法\footnote{\textsf{https://scrapbox.io/help-jp/Location記法}}と呼ばれる機能があり地理情報を記述するのに適している。
   本システムではLocation記法でAR情報を表示する場所を指定している。
 
   \item シンプルなリンク記法によるハイパーリンクと関連ページリスト
@@ -175,7 +175,7 @@ NFCにタッチすることで位置と向きを認識し、図\ref{fig:hypar_to
 
 \subsubsection{ScrapboxによるAR情報法の追加・編集}
 HypAR Touchアプリに表示されるAR情報はNFCタグ指定されたScrapboxのプロジェクトをもとに生成されている。
-Scrapboxのプロジェクトにあるページのうち、Location記法によって地理情報の記述があるページがアプリ側で表示されるAR情報と対応する。
+Scrapboxのプロジェクトにあるページのうち、Location記法によって地理情報の記述のあるページがアプリ側で表示されるAR情報と対応する。
 
 \paragraph*{ARで表示する情報を追加する}
 AR情報はScrapboxのページと対応しているため、新しくページを作成し、以下の2点の情報を記入することでAR情報が登録される。
@@ -187,8 +187,8 @@ AR情報はScrapboxのページと対応しているため、新しくページ�
 
   \item Location記法による記述
   
-  Scrapboxにはソースコード \ref{google_map_url}のようなGoogleMapのURLをソースコード \ref{location}のようなLocation記法に変換し、図\ref{fig:scrapbox_ar_new}の\textcircled{\scriptsize{2}}のようにマップとして表示する機能がある。
-  この機能を利用し利用しARの情報を追加したい場所を中心にしたGoogleMapのURLをScrapboxに貼り付けることでARの情報登録できる。
+  Scrapboxにはソースコード \ref{google_map_url}のようなGoogle MapsのURLをソースコード \ref{location}のようなLocation記法に変換し、図\ref{fig:scrapbox_ar_new}の\textcircled{\scriptsize{2}}のようにマップとして表示する機能がある。
+  この機能を利用し利用しARの情報を追加したい場所を中心にしたGoogle MapsのURLをScrapboxに貼り付けることでARの情報登録できる。
 
   \begin{lstlisting}[caption=googleMapのURL, label=google_map_url]
     https://www.google.com/maps/place/%E6%9D%B1%E4%BA%AC%E9%A7%85/@35.681502,139.7671784,17z/data=!4m5!3m4!1s0x60188bfbd89f700b:0x277c49ba34ed38!8m2!3d35.6812362!4d139.7671248
@@ -222,7 +222,7 @@ Scrapboxでは画像のURLを\texttt{[]}で囲う、または画像をドラッ�
 \end{figure}
 
 \paragraph*{ハイパーリンクを利用して説明を書く}
-Scrapboxでは単語を\texttt{[]}で囲うことで同一wiki内ページへのハイパーリンクを含んだ文章を記述することが可能である。
+Scrapboxでは単語を\texttt{[]}で囲うことにより同一wiki内ページへのハイパーリンクを含んだ文章を記述することが可能である。
 他ページヘのハイパーリンクが生成されるとAR表示で関連情報として表示されるようになる。(図\ref{fig:scrapbox_link_and_ar})
 説明に利用した単語を積極的にリンクにすることによって関連する情報を提示することが可能になる。
 
@@ -243,24 +243,17 @@ NFCに記録するNFCで情報を記録する際に一般的なNDEFフォーマ�
   \caption{NFCに書き込むURIデータ} \label{fig:nfc_uri}
 \end{figure}
 
-その上でHypAR Touchのサーバーにタグに書き込んだIDと紐付ける形で以下の情報を登録する。
+その上でタグに書き込んだIDと紐付ける形でHypAR Touchのサーバーに以下の情報を登録する。
 \begin{itemize}
   \item 緯度経度
   \item タグの設置される向き(0〜360度)
   \item 表示するAR情報の元となるScrapboxのプロジェクト
   \item タッチした時に選択されているリンク情報
 \end{itemize}
-これらの情報はHypAR Touchアプリ内の登録画面(図\ref{fig:nfc_register_mobile})またはHypAR Touchサーバーが提供する登録画面(図\ref{fig:nfc_register_web})より登録可能である。
+これらの情報はHypAR Touchアプリ内の登録画面(図\ref{fig:nfc_register_mobile})により登録可能である。
 
 \begin{figure}[h]
-  \begin{minipage}{0.5\hsize}
-    \centering
-    \includegraphics[width=70mm]{images/nfc_register_mobile.png}
-    \caption{モバイルアプリでの登録} \label{fig:nfc_register_mobile}
-  \end{minipage}
-  \begin{minipage}{0.5\hsize}
-    \centering
-    \includegraphics[width=70mm]{images/nfc_register_mobile.png}
-    \caption{webアプリでの登録} \label{fig:nfc_register_web}
-  \end{minipage}
+  \centering
+  \includegraphics[width=70mm]{images/nfc_register_mobile.png}
+  \caption{モバイルアプリでの登録} \label{fig:nfc_register_mobile}
 \end{figure}
