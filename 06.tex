@@ -108,24 +108,58 @@ KMLファイルはGoogleMapでの読み込みや作成が可能でありユー�
 \section{ユーザの位置測位及びコンテキスト情報の取得に関する研究}
 前節でも挙げたとおりARによるナビゲーションではユーザ位置測位やコンテキスト情報取得には様々な方式が検討されている。
 前節に挙げたARナビゲーションシステムでは検討されなかった位置測位システム及びそれらを比較する研究を紹介する。
-
+さらにこれらの測位を複合的に扱いコンテキスト把握につなげるシステムも紹介する。
 
 \subsection{RSSI based Bluetooth low energy indoor positioning}
-RSSI based Bluetooth low energy indoor positioning\cite{7275525}
+JianyongらによるRSSI based Bluetooth low energy indoor positioning\cite{7275525}ではBluetooth Low Energy\footnote{\textsf{TODO:todo}}による位置測位が提案されている。
+複数の送信機から送られたBluetoothの電波のRSSI（Received Signal Strength Indicator：受信信号強度）を元に位置測位を行うものである。
+Bluetoothは現在普及しているモバイル端末のほぼ全てが対応する通信形式であり、Bluetooth Low Energyは使用電力も少なくて済むという利点がある。
+一方で複雑な形状の空間や遮蔽物がある場所では測位が難しいという難点があり、正確な測位のためには多くのサンプリングが必要になる。
+またGPSやNFCタグなどと比べると一定範囲ごとにBluetoothの送信機が必要になりコストも高いというデメリットがある。
 
 
 \subsection{Recent Advances in Wireless Indoor Localization Techniques and System}
-Recent Advances in Wireless Indoor Localization Techniques and System\cite{Farid2013}
+FaridらによるRecent Advances in Wireless Indoor Localization Techniques and System\cite{Farid2013}では屋内でのユーザの位置測位手法の分析が行われている。
+この研究では多くの方式について比較を行っているが、モバイル端末自体以外に特殊な装置を必要としないことを条件にするとGPS、Wifi、Bluetoothの３つに絞られる。
+それぞれに対して位置測位の面で以下のような特徴があるとしている。
+\begin{itemize} 
+  \item GPS\\
+    屋外では利用できるが屋内では利用できず、精度も6~10mと良いとは言えない。また位置の取得までに多少の時間がかかるという難点があるとしている。
+  \item Wifi\\
+    屋内屋外を問わず問わず1~5mの精度で測位できるが、消費電力が高く設置コストが高いという難点がある。
+  \item Bluetooth\\
+    カバーする範囲が狭く屋内での利用に限られるが消費電力が少なく、2~5mの精度で測位ができる。一方で設備コストが高いことが難点である。
+\end{itemize}
+このようにモバイル端末で位置測位を行う方式は複数あるが、どれも精度やコストの面で難点がある。
+一方本研究で提案したNFCタグによる位置測位はユーザがNFCタグにタッチしなくてはならない点を除くと低コストで正確な位置測位が可能である。
+位置測位以外にもNFCタグにコンテキスト情報の結びつけが行える点やタグにタッチするだけでアプリの起動を行えることを踏まえれば十分に有用であると言える。
+
+\subsection{App Clips}
+App Clips\footnote{\textsf{https://developer.apple.com/documentation/app\_clips}}はApple\footnote{\textsf{TODO:todo}}が2020年にiOS向けに発表した機能である。
+App ClipsはNFCタグやQRコードの読み込みや位置情報をトリガにして決済、情報提示等を行う仕組みである。
+専用のNFCタグやQRコードを読み込んだり、GPSからの情報で特定の位置にいたりすると登録された小規模アプリケーションがインストールなしに利用できる。
+これは上記のようなユーザの位置測位システムを統合しコンテキスト把握に活かしているシステムと言える。
+またNFCタグやQRの読み込みからアプリケーションの起動を行う点は本システムと同様である。
 
 
 \section{NFCを用いて情報を取得し、ナビゲーションに応用する研究}
 NFC技術を自己位置推定やコンテキスト情報取得などに利用し、ナビゲーションに役立てている研究を紹介する。
 
 \subsection{Bridging physical and virtual worlds with electronic tags}
-WantらはBridging physical and virtual worlds with electronic tags\cite{10.1145/302979.303111}で
+WantらはBridging physical and virtual worlds with electronic tags\cite{10.1145/302979.303111}でRFIDを利用し実世界とコンピュータ世界の情報を結びつけるシステムを提案している。
+このシステムでは実世界の文書や図書、カードなどにRFIDタグを設置し、これらを専用のリーダーで読み込むことで、関連した情報やURLを推薦したり他のオブジェクトとの関連を示す事ができるようになっている。
+
+ARでの表示は行っていないが、本研究同様にNFCタグをとリーダーを利用してコンテキスト情報を取得しそれに合わせた内容を推薦するシステムである。
+この研究からもNFCタグの利用はコンテキスト情報の埋め込みに置いて様々な利用が可能である事がわかる。
+
 
 \subsection{GoldFish}
-GoldFish\cite{10.1145/2407696.2407699}は
+増井らによるGoldFish\cite{10.1145/2407696.2407699}はNFCリーダーを搭載したAndroid端末で「実世界GUI」を開発するためのJavaScriptフレームワークである。
+Android端末に搭載されたNFCリーダーと加速度センサを用いて実世界に設置されたNFCタグを読み込むことで任意のプログラムを実行できるようになっている。
+実行するプログラムはweb上で作成しそのURLをGoldFishに登録するため、ユーザーは機能ごとにアプリをインストールする必要ないため汎用性が非常に高い。
+
+GoldFishも本研究同様にNFCタグを実世界のコンテキストの取得に利用している研究である。
+またweb上にプログラムを配置し汎用性を高めるという手法は、本研究がARのコンテツをすべてweb上にwikiのプロジェクトとして管理し、ナビゲーションのコンテキストをアプリ側で規定しない点と発想を同じくするものである。
 
 \subsection{Development of an Indoor Navigation System Using NFC Technology}
 OzdenizciらはDevelopment of an Indoor Navigation System Using NFC Technology\cite{5954491}でNFCタグを利用した室内ナビゲーションのプロトタイプ「NFC Internal」を作成している。
@@ -169,17 +203,51 @@ VannotatoRはホロコーストに関連する資料を整理し、可視化す�
 \end{figure}
 
 \subsection{HyperReal}
-RomeroらによるHyperRealは\cite{10.1145/900051.900055}
+RomeroらによるHyperRealは\cite{10.1145/900051.900055}仮想現実並びに複合現実におけるハイパーメディアの設計及びその設計に基づいたプロトタイプである。
+単なる文字でのハイパーリンクだけでなく様々なメディアをリンクし、ユーザーの遷移記録を保存し再現する機能を有するなど複雑なハイパーメディアの構築を行っている。
+またプロトタイプでは博物館の案内アプリケーションを作成しており、ARで大まかな情報提示(図\ref{fig:HyperReal_ar})を行った上で詳細を仮想空間で補足する(図図\ref{fig:HyperReal_vr})ようなインターフェースを備えている。
+このアイデアは本研究におけるAR情報付近へのワープ機能と類似が見られる。
+一方で本研究のようにARで提示する情報の編集環境などには重点を置いておらず、あくまでも時間などを含めた複雑なハイパーメディアの構築に主眼をおいた研究である。
+\begin{figure}[h]
+  \centering 
+  \includegraphics[width=120mm]{images/HyperReal_ar.png}
+  \caption{HyperRealでのAR表示} \label{fig:HyperReal_ar}
+\end{figure}
+
+\begin{figure}[h]
+  \centering 
+  \includegraphics[width=120mm]{images/HyperReal_vr.png}
+  \caption{HyperRealでのVR表示} \label{fig:HyperReal_vr}
+\end{figure}
 
 \subsection{Croquet Project}
-Croquet Project\cite{10.5555/1009376.1009395}はSmithらが主導した仮想OS構築プロジェクトであり、
+
 
 \subsection{Annotation authoring in collaborative 3D virtual environments}
-小林らによるAnnotation authoring in collaborative 3D virtual environments\cite{10.1145/1152399.1152452}では
+小林らによるAnnotation authoring in collaborative 3D virtual environments\cite{10.1145/1152399.1152452}では、Kayらが主導した仮想OSプロジェクトCroquet\cite{10.5555/1009376.1009395}でを拡張したアノテーションシステムを提案している。
+具体的には以下のような機能をもつ注釈システムを提案している。
+\begin{itemize} 
+  \item 特定のシーン内に注釈をつけそれらをあらゆるシーンからシーンから参照できるようにする
+  \item 追加された注釈をオブジェクトとして空間上に配置しまとめることができる
+  \item 注釈をフィルタするためのシステム「Interactor」を作成
+  \item 注釈の変化を可視化する
+\end{itemize}
+これらの機能のうち、追加された注釈をオブジェクトとして空間上に配置しまとめることができる点は第\ref{link_enum_notatio}節の「リンクを利用した柔軟な記法」と類似が見られる。
+表示するもののフィルタに関しても本研究での課題と言える。
+一方で本研究ではAR/VRで表示する情報とその他のwikiページを等価に扱ったリンク構造を採用しており。この研究とは大きく異なると言える。
 
 \subsection{MagicBook}
-BillinghurstらによるMagicBook\cite{10.1145/634067.634087}は
+BillinghurstらによるMagicBook\cite{10.1145/634067.634087}ははARとVRの間のシームレスな移行を可能にするシステムのプロトタイプである。
+Magicbookでは実際の本を利用し、本にマーカーを埋め込むことでヘッドマウントディスプレイからの自由な視点を持ったARを提供する。
+さらにARで表示された状態でハンドルのスイッチを押すとシームレスにVRに移行し、自由に仮想空間状を移動することが可能になる(図\ref{fig:MagicBook})。
+MagicBookのARのビューからVRへとシームレスに切り替えることでより詳細な情報を表示するという考えは本システムの移動機能に類似点が見られる。
+一方で、本研究での移動はあくまでも場所から場所への移動による探索を主眼としているに対し、MagicBookは1つのAR情報を更に細くする形でVRを展開しているという点で用途に異なりがあるといえる。
 
 
+\begin{figure}[h]
+  \centering 
+  \includegraphics[width=120mm]{images/MagicBook.png}
+  \caption{MagicBookでのAR（左）とVR（右）} \label{fig:MagicBook}
+\end{figure}
 
 
