@@ -31,7 +31,7 @@ HypAr TouchアプリはNFCに記録された一意なidを取得し、そのid�
 \subsection{HypAR Touchサーバ}
 HypAR TouchサーバはNode.js\footnote{\textsf{https://nodejs.org/}}上で動作するWebアプリケーションとして実装されている。
 HTTPリクエストを処理するWebアプリケーションフレームワークとしてExpress\footnote{\textsf{https://expressjs.com/}}を用い、
-そのホスティング環境としてBaaS(Backend-as-a-Service)の一つであるHeroku\footnote{\textsf{https://www.heroku.com/}}を利用している。
+そのホスティング環境としてBaaS(Backend-as-a-Service)の1つであるHeroku\footnote{\textsf{https://www.heroku.com/}}を利用している。
 HypAR TouchサーバはHypAR Touchアプリで利用するAR情報やNFCタグ情報を管理する役割をもっており、その機能は大きく4つに分けられる。
 
 \begin{itemize}
@@ -49,7 +49,7 @@ HypAR TouchサーバはHypAR Touchアプリで利用するAR情報やNFCタグ�
   \item クロールした情報を元にパノラマ画像を生成し、Gyazoに保存した上でそのURLを記録する。
   
   第3章で記述した移動機能を実装するため、ARで表示する情報には記録された位置情報に最も近いところから撮影されたパノラマ画像が必要である。
-  そのため HypAR TouchサーバではARで表示する情報全てに対してGoogleStreetView\footnote{\textsf{TODO:todo}}のAPIを利用することでパノラマ画像を生成している。
+  そのためHypAR TouchサーバではARで表示する情報全てに対してGoogleStreetView\footnote{\textsf{TODO:todo}}のAPIを利用することでパノラマ画像を生成している。
   また、画像の保存・永続化には後述するGyazoを利用しており、最終的にはGyazoに保存されたパノラマ画像のURLをARで表示する情報と合わせてデータベースに永続化している。
   \newline
 
