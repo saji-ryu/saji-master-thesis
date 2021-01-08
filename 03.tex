@@ -28,7 +28,7 @@ NFCタグの読み取り機能を持つAndroid\footnote{\textsf{https://www.andr
 
 \paragraph*{NFCタグ}
 本システムではモバイル端末の位置情報測位および提示するナビゲーションの出し分けのためにNFCタグを利用している。
-NFCタグにはISO/IEC 14443のTypeA\footnote{\textsf{https://www.nxp.com/docs/en/application-note/AN10834.pdf}}規格に準拠するNFCタグを利用しており、NDEF\footnote{\textsf{https://nfc-forum.org/our-work/specification-releases/specifications/nfc-forum-technical-specifications/}}形式で情報を記録している。
+NFCタグにはISO/IEC 14443のTypeA\footnote{\textsf{https://www.nxp.com/docs/en/application-note/AN10834.pdf}}規格に準拠するNFCタグを利用しており、NDEF\footnote{\textsf{https://nfc-forum.org/our-work/specification-releases/specifications/nfc-forum-technical-specifications/}}(NFC Data Exchange Format)形式で情報を記録している。
 このタグタイプと情報形式はNFC機能を持つほとんどのモバイル端末で読み取りがサポートされており、アプリを起動していない状態でのバックグラウンド読み取りにも対応している。
 さらにタグ内に記録する情報としてCustomURLSchemeを利用することでアプリが起動していない状態でもNFCタグにタッチすることでHypAR Touchアプリの起動を可能としている。
 
