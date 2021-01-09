@@ -21,23 +21,31 @@
 ARを地理情報のナビゲーションとして利用する代表的な研究及びシステムを紹介する。
 
 \subsection{A Touring Machine}
-Feinerらが開発したA Touring Machine\cite{629922}(図\ref{fig:a_touring_machine})はヘッドマウント・ディスプレイとスタライスで操作可能な2Dディスプレイで大学のキャンパスの情報を表示するアプリケーションである。
-ARを利用した地理情報ナビゲーションの初期研究として挙げられる。
-GPSによる位置情報と磁気センサによる向きの情報からユーザの位置と向きを推定し、ヘッドマウント・ディスプレイに大学の情報が表示される。
-また手持ちのスタライスで操作可能な2Dディスプレイが専用のHTTPサーバにつながっており、表示したい情報のリンクに触れるなどの操作することでヘッドマウント・ディスプレイでの表示情報が変化するようになっている。
-一方でGPSと磁気センサによる位置推定には精度の面で課題があり、当時の技術ではヘッドマウント・ディスプレイとコンピュータを小型化することが難しかったため常用するには難しいものであった。
+Feinerらが開発したA Touring Machine\cite{629922}はヘッドマウント・ディスプレイとスタライスで操作可能な2Dディスプレイで大学のキャンパスの情報を表示するアプリケーションであり、ARを利用した地理情報ナビゲーションの初期研究として挙げられる。
+このシステムではGPSによる位置情報と磁気センサによる向きの情報からユーザの位置と向きを推定し、ヘッドマウント・ディスプレイに大学の情報が表示される(図\ref{fig:a_touring_machine_ar})。
+また手持ちのスタライスで操作可能な2Dディスプレイが専用のHTTPサーバにつながっており、表示したい情報のリンクに触れるなどの操作をすることでヘッドマウント・ディスプレイでの表示情報が変化する。
+ナビゲーションでの表示やシステム構成などが現在のARナビゲーションアプリに通ずる一方で、GPSと磁気センサによる位置測位には精度の面で課題があった。
+また当時の技術ではヘッドマウント・ディスプレイとコンピュータを小型化することが難しかったため、図\ref{fig:a_touring_machine_pc}のように装備が大きく、屋外で常用することは現実的でなかった。
 
 \begin{figure}[h]
-  \centering 
-  \includegraphics[width=150mm]{images/wip.jpg}
-  \caption{A Touring Machine} \label{fig:a_touring_machine}
+  \begin{minipage}{0.5\hsize}
+    \centering 
+    \includegraphics[height=60mm]{images/a_touring_machine_ar.png}
+    \caption{表示されたキャンパスの情報} \label{fig:a_touring_machine_ar}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering 
+    \includegraphics[height=60mm]{images/a_touring_machine_pc.png}
+    \caption{実際の装備} \label{fig:a_touring_machine_pc}
+  \end{minipage}
 \end{figure}
 
 
 \subsection{KARMA}
-同じくFeinerらがKnowledge-based augmented reality\cite{10.1145/159544.159587}で提案したKARMA(図\ref{fig:karma})はレーザープリンターのメンテナンスをARで説明するプロトタイプシステムである。
-ヘッドマウント・ディスプレイによってレーザープリンターの内部機構に関する情報を提示しメンテナンスを助けるものであった。
-位置測位は超音波センサを利用しておりこれらのセンサをすべての対象に取り付ける必要があるという難点があった。
+FeinerらがKnowledge-based augmented reality\cite{10.1145/159544.159587}で提案したKARMAはレーザープリンターのメンテナンスをARで説明するプロトタイプシステムである。
+図\ref{fig:karma}のようにヘッドマウント・ディスプレイによってレーザープリンターの内部機構に関する情報を提示し、ユーザがメンテナンスするときの理解を助けるシステムである。
+位置測位には超音波センサを利用しており、正確な位置測位と情報の投影が可能である。
+一方で高価で大型な超音波センサをすべての対象に取り付ける必要があり、現実的に利用するにはより良い測位システムを利用する必要があった。
 
 \begin{figure}[h]
   \centering
@@ -47,32 +55,48 @@ GPSによる位置情報と磁気センサによる向きの情報からユー�
 
 
 \subsection{MARS}
-HöllererらによるMARS\cite{MARS}は上記の「A Touring Machine」及び「KARMA」の方式を組み合わせ、屋内と屋外の両方でヘッドマウントディスプレイによるナビゲーションを可能にするプロトタイプである。
+HöllererらによるMARS\cite{MARS}は上記の「A Touring Machine」及び「KARMA」の方式を組み合わせ、屋外でのARナビゲーションと室内でのARによる地図操作を結びつけたシステムである。
+ユーザは屋外でこのシステムを利用することでヘッドマウントディスプレイを通して建物に重ねて表示されたナビゲーションを見ることができる(図\ref{fig:mars_ar})。またPC上で作成された経路情報を実際の景色に投影することも可能である(図\ref{fig:mars_route})。
+一方で屋内ではMARSを利用することで、机の平面上に仮想の地図が投影される。この仮想地図はトラックボールや位置センサの搭載されたオブジェクトを利用することで操作でき、屋外のユーザが見ている経路情報などを編集することができる(図\ref{fig:mars_ar_indoor})。
+このように屋外でのナビゲーションを編集する環境として屋内でのAR環境を利用し、屋内と屋外のARビューに相互作用をもたせる方式はユーザのAR情報編集の体験向上に大きく寄与すると思われる。
+このような編集環境の状態がインタラクティブにARでの情報に作用するという点は本研究とも関連があると言える。
 
-
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[width=150mm]{images/karma.jpg}
-%   \caption{KARMA} \label{fig:karma}
-% \end{figure}
-
-\subsection{NaviCam}
-暦本らによるNaviCam\cite{10.1145/215585.215639}はマーカーをカメラで認識し、マーカー応じてその場に即した説明を手持ちの2Dディスプレイやヘッドマウントディスプレイに提示するシステムである。
-現在主流になっているマーカーベースのARの初期研究であり、青と赤の線で構成されたカラーコードと呼ばれるバーコードを認識することで状況と対象物の位置を把握し、情報を提示している。
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \centering 
+    \includegraphics[height=60mm]{images/mars_ar.png}
+    \caption{ARでの表示} \label{fig:mars_ar}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering 
+    \includegraphics[height=60mm]{images/mars_route.png}
+    \caption{経路の投影} \label{fig:mars_route}
+  \end{minipage}
+\end{figure}
 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=150mm]{images/wip.jpg}
+  \includegraphics[height=60mm]{images/mars_ar_indoor.png}
+  \caption{屋内での利用} \label{fig:mars_ar_indoor}
+\end{figure}
+
+\subsection{NaviCam}
+暦本らによるNaviCam\cite{10.1145/215585.215639}はマーカーをカメラで認識し、マーカー応じてその場に即した説明を手持ちの2Dディスプレイやヘッドマウントディスプレイに提示するシステムである。
+現在主流になっているマーカーベースのARの初期研究であり、青と赤の線で構成されたカラーコードと呼ばれるバーコードを認識することで状況と対象物の位置を把握し、情報を提示している。
+カラーコードの画像認識からARを表示するこの方式は前述のような超音波センサを利用する方式などと比べ圧倒的に低コストであり、カラーコード上での表示は正確であるため屋内での位置測位に有利であると言える。
+またコードのパターンによりコンテキスト情報を埋め込むことが可能である点も既存の測位システムにない特徴であった。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=70mm]{images/NaviCam.png}
   \caption{NaviCam} \label{fig:NaviCam}
 \end{figure}
 
 
-
-
 \subsection{Feature-Based Indoor Navigation Using Augmented Reality}
 KasprzakらはFeature-Based Indoor Navigation Using Augmented Reality\cite{6597797}で室内での利用を想定したモバイル端末のARナビゲーションのプロトタイプを作成し評価している。
-このプロトタイプは画像として登録された特徴的なアイコンなどを元に画像認識から位置情報と向きを推定し、ユーザの目的地を矢印で表示するものである。
+このプロトタイプは画像として登録された特徴的なアイコンなどを元に画像認識(図\ref{fig:FBINUAR_image})から位置情報と向きを推定し、ユーザの目的地を矢印で表示する(図\ref{fig:FBINUAR_ar})ものである。
 またこのプロトタイプを利用し、実際に建物内での案内に利用するテストを行っている。
 その結果2Dの地図と比べて目的地までの到達時間が短縮され、被験者が立ち止まったり間違えた方向に進む回数も減少したと報告している。
 室内での利用を視野に入れている点はGPSなどを利用するシステムと違い、本研究に近いが登録した画像による位置推定には以下のような課題もある。
@@ -82,6 +106,18 @@ KasprzakらはFeature-Based Indoor Navigation Using Augmented Reality\cite{65977
   \item 距離や明るさなどによっては認識できない可能性がある
 \end{itemize}
 またこのプロトタイプシステムでは事前に選択した目的地に正確に早く到着することに主眼を置いており、本システムのようにハイパーリンクによる関連情報から周辺譲歩を探索する用途を考えていない点も本研究との違いである。
+
+\begin{figure}[h]
+  \centering 
+  \includegraphics[height=70mm]{images/FBINUAR_image.png}
+  \caption{特徴量による画像認識} \label{fig:FBINUAR_image}
+\end{figure}
+\begin{figure}[h]
+  \centering 
+  \includegraphics[height=70mm]{images/FBINUAR_ar.png}
+  \caption{矢印による案内} \label{fig:FBINUAR_ar}
+\end{figure}
+
 
 \subsection{Wikitude}
 Wikitude(図\ref{fig:Wikitude})は、Wikitude GmbH\footnote{\textsf{TODO:todo}}が開発したモバイル向けARソフトウェアである。
@@ -99,8 +135,8 @@ KMLファイルはGoogleMapでの読み込みや作成が可能でありユー�
 
 \begin{figure}[h]
   \centering 
-  \includegraphics[width=150mm]{images/Wikitude.png}
-  \caption{A Touring Machine} \label{fig:Wikitude}
+  \includegraphics[width=120mm]{images/Wikitude.png}
+  \caption{Wikitude} \label{fig:Wikitude}
 \end{figure}
 
 
@@ -119,7 +155,7 @@ Bluetoothは現在普及しているモバイル端末のほぼ全てが対応�
 
 
 \subsection{Recent Advances in Wireless Indoor Localization Techniques and System}
-FaridらによるRecent Advances in Wireless Indoor Localization Techniques and System\cite{Farid2013}では屋内でのユーザの位置測位手法の分析が行われている。
+FaridらによるRecent Advances in Wireless Indoor Localization Techniques and System\cite{Farid2013}では屋内でのユーザの位置測位手法の分析が行われている(図\ref{fig:IndoorLocalization})。
 この研究では多くの方式について比較を行っているが、モバイル端末自体以外に特殊な装置を必要としないことを条件にするとGPS、Wifi、Bluetoothの３つに絞られる。
 それぞれに対して位置測位の面で以下のような特徴があるとしている。
 \begin{itemize} 
@@ -134,13 +170,25 @@ FaridらによるRecent Advances in Wireless Indoor Localization Techniques and 
 一方本研究で提案したNFCタグによる位置測位はユーザがNFCタグにタッチしなくてはならない点を除くと低コストで正確な位置測位が可能である。
 位置測位以外にもNFCタグにコンテキスト情報の結びつけが行える点やタグにタッチするだけでアプリの起動を行えることを踏まえれば十分に有用であると言える。
 
+\begin{figure}[h]
+  \centering 
+  \includegraphics[width=120mm]{images/IndoorLocalization.png}
+  \caption{屋内での位置測位手法の比較} \label{fig:IndoorLocalization}
+\end{figure}
+
+
 \subsection{App Clips}
 App Clips\footnote{\textsf{https://developer.apple.com/documentation/app\_clips}}はApple\footnote{\textsf{TODO:todo}}が2020年にiOS向けに発表した機能である。
 App ClipsはNFCタグやQRコードの読み込みや位置情報をトリガにして決済、情報提示等を行う仕組みである。
-専用のNFCタグやQRコードを読み込んだり、GPSからの情報で特定の位置にいたりすると登録された小規模アプリケーションがインストールなしに利用できる。
+専用のNFCタグやQRコードを読み込んだり、GPSからの情報で特定の位置にいたりすると登録された小規模アプリケーションがインストールなしに利用できる(図\ref{fig:appClips})。
 これは上記のようなユーザの位置測位システムを統合しコンテキスト把握に活かしているシステムと言える。
 またNFCタグやQRの読み込みからアプリケーションの起動を行う点は本システムと同様である。
 
+\begin{figure}[h]
+  \centering 
+  \includegraphics[height=90mm]{images/appClips.png}
+  \caption{App Clips} \label{fig:appClips}
+\end{figure}
 
 \section{NFCを用いて情報を取得し、ナビゲーションに応用する研究}
 NFC技術を自己位置推定やコンテキスト情報取得などに利用し、ナビゲーションに役立てている研究を紹介する。
@@ -198,7 +246,7 @@ VannotatoRはホロコーストに関連する資料を整理し、可視化す�
 
 \begin{figure}[h]
   \centering 
-  \includegraphics[width=150mm]{images/VAnnotatoR.png}
+  \includegraphics[height=90mm]{images/VAnnotatoR.png}
   \caption{VAnnotatoRでのAR表示} \label{fig:VAnnotatoR}
 \end{figure}
 
@@ -210,17 +258,15 @@ RomeroらによるHyperRealは\cite{10.1145/900051.900055}仮想現実並びに�
 一方で本研究のようにARで提示する情報の編集環境などには重点を置いておらず、あくまでも時間などを含めた複雑なハイパーメディアの構築に主眼をおいた研究である。
 \begin{figure}[h]
   \centering 
-  \includegraphics[width=120mm]{images/HyperReal_ar.png}
+  \includegraphics[height=80mm]{images/HyperReal_ar.png}
   \caption{HyperRealでのAR表示} \label{fig:HyperReal_ar}
 \end{figure}
 
 \begin{figure}[h]
   \centering 
-  \includegraphics[width=120mm]{images/HyperReal_vr.png}
+  \includegraphics[height=80mm]{images/HyperReal_vr.png}
   \caption{HyperRealでのVR表示} \label{fig:HyperReal_vr}
 \end{figure}
-
-\subsection{Croquet Project}
 
 
 \subsection{Annotation authoring in collaborative 3D virtual environments}
