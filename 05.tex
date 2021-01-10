@@ -1,12 +1,108 @@
 \chapter{応用例}
 \label{chap:usage}
 
-本章では、HypAR Touchによって実現可能な応用例について述べる。
+本章では、HypAR Touchを実際に利用した様子と今後実現可能な応用例について述べる。
 
 \newpage
 
+\section{利用例}
+HypAR Touchのプロトタイプを実際にナビゲーションシステムとして利用した様子を述べる。
 
-\section{駅など公共施設での案内}
+\subsection{武蔵小杉駅及び西谷駅での利用例}
+この利用例では武蔵小杉駅から相鉄・JR直通線に乗り、西谷駅で降りて昼食を取るユースケースを想定したものである。
+
+\subsubsection{武蔵小杉駅での利用}
+武蔵小杉駅は図\ref{fig:musako_2d}のようにJRと東急の改札が立体的に重なっている上に、横須賀線などJR線の一部ホームが非常に離れたところにある特殊な形をしている。
+今回のユースケースでは\textcircled{\scriptsize{1}}からスタートし、\textcircled{\scriptsize{2}}のJR改札口を通り\textcircled{\scriptsize{3}}のホームまでホームまで到達する必要がある。
+まずは\textcircled{\scriptsize{1}}の地点で利用した様子を述べる。
+図\ref{fig:musako_tokyu_ar1}は\textcircled{\scriptsize{1}}から\textcircled{\scriptsize{2}}の方向を見た時の様子である。
+\textcircled{\scriptsize{2}}の方向には「武蔵小杉駅」の表記があり、表記の奥にあるエスカレータを登ることで\textcircled{\scriptsize{2}}の改札に到達できることがわかる。
+また図\ref{fig:musako_tokyu_ar2}は\textcircled{\scriptsize{1}}から正面(図\ref{fig:musako_2d}の上方向)を見たときの様子である。正面に「武蔵小杉駅南武線ホーム」という表示があるように、実際にその方向には\textcircled{\scriptsize{2}}から階段を降りたところにある南武線のホームがある。
+今回は南武線には乗らなかったが、南武線に乗り換える場合はこの場所に南武線のホームがある事がわかり、他のホームと間違える可能性が少なくなると考えられる。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=120mm]{images/musako_2d.png}
+  \caption{武蔵小杉駅の構内図} \label{fig:musako_2d}
+\end{figure}
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/musako_tokyu_ar1.png}
+    \caption{地点\textcircled{\scriptsize{1}}から\textcircled{\scriptsize{2}}を見た時} \label{fig:musako_tokyu_ar1}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/musako_tokyu_ar2.png}
+    \caption{地点\textcircled{\scriptsize{1}}から正面を見た時} \label{fig:musako_tokyu_ar2}
+  \end{minipage}
+\end{figure}
+
+次に図\ref{fig:musako_2d}の\textcircled{\scriptsize{2}}の地点で使用した様子を述べる。
+図\ref{fig:musako_jr_ar1}は\textcircled{\scriptsize{2}}の地点から\textcircled{\scriptsize{3}}の位置を見ている時の様子である。
+距離の表示で402mとあるように横須賀線のホームが改札奥右側の階段を降りた先にあることがわかる。
+実際に横須賀線のホームに向かうためには改札奥右側の階段を降りる必要があり表示が正しいことがわかる。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=60mm]{images/musako_jr_ar1.png}
+  \caption{リンクを利用したルートの表記例} \label{fig:musako_jr_ar1}
+\end{figure}
+このように武蔵小杉駅での利用例から、ARで正しい位置に案内表示が出ることで複雑な構造の駅でも悩まずに乗り換えができることが分かる。
+
+
+\subsubsection{西谷駅での利用}
+今回のユースケースではら本システムを利用し、西谷駅の近くで昼食をとるお店をさがすために利用した。
+筆者は西谷駅に訪れたことがなく、西谷駅付近の店の情報は研究室の後輩で西谷駅周辺に住んでいる学生の情報を元に入力した。
+
+西谷駅は図\ref{fig:nishiya_2d}のような比較的単純な形をしている。今回は改札を出た図\ref{fig:nishiya_2d}の\textcircled{\scriptsize{1}}の地点で本システムを利用した。
+図\ref{fig:nishiya_maruichi_ar}は図\ref{fig:nishiya_2d}の\textcircled{\scriptsize{1}}の位置から矢印方向にモバイル端末を向けた上で、「丸一」というAR情報を選択したときの様子である。
+AR情報が選択状態であるため、関連リンクである「ラーメン」、「家系」、「西谷駅」が表示されている。このようなリンク情報とサムネイルからこのお店は家系と呼ばれる種類のラーメン屋であり西谷駅の近くにある事がわかる。
+このれらの関連リンクのうち「ラーメン」を選択したときの様子が図\ref{fig:nishiya_ramen_ar}である。その結果表示される情報が「ラーメン」というリンクが含まれるAR情報に絞られ、実際に付近のラーメン屋である「丸一」、「北海ラーメン　蝦夷」、「麺屋奨 TASUKU」が表示されている。
+図\ref{fig:nishiya_ezo_ar}は付近のラーメン屋である「北海ラーメン　蝦夷」を選択した時の様子である。サムネイルからラーメンの様子がわかるだけでなく、「生姜焼き」と言うリンクが有ることから生姜焼きも有名であることがわかる。
+今回の利用では最終的に「北海ラーメン　蝦夷」に向かうことにしたが、既に図\ref{fig:nishiya_2d}の矢印の方向160mにあることが分かっているので図nの\textcircled{\scriptsize{2}}の出口から道沿いに進むだけで実際に店にたどり着くことができた。
+
+西谷駅での利用例から、本システムでは以下のような利用ができることが分かった。
+\begin{itemize}
+  \item 付近のお店を探すことができる。
+  \item リンク情報からお店の系統や有名なメニューを知ることができる。
+  \item リンク情報をもとに同じ種類の店一覧を見ることができる。
+\end{itemize}
+このような探索的なナビゲーションがARで見れることによって、自身の全く知らない場所でも迷いなく店を比較検討し、実際に訪れることができた。
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=120mm]{images/nishiya_2d.png}
+  \caption{西谷駅の構内図} \label{fig:nishiya_2d}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/nishiya_maruichi_ar.png}
+    \caption{「丸一」を選択した時} \label{fig:nishiya_maruichi_ar}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/nishiya_ramen_ar.png}
+    \caption{「ラーメン」というリンクを選択した時} \label{fig:nishiya_ramen_ar}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=60mm]{images/nishiya_ezo_ar.png}
+  \caption{「北海ラーメン 蝦夷」を選択した時} \label{fig:nishiya_ezo_ar}
+\end{figure}
+
+
+\subsection{湘南台での利用例}
+この利用例は湘南台の小田急改札から本システムを利用してSFCに向かうバスに乗るユースケースを想定したものである。
+
+\section{応用例}
+前節での実際の利用を踏まえ考えられる利用例及び応用例をまとめ、その利点を記載する。
+
+\subsection{駅など公共施設での案内}
 駅や空港などの比較的大規模な公共施設内ではGPSによる案内が利用できない場合が多く、2次元の地図を提示するか矢印などによる案内表示を行うのが一般的である。
 しかしながら両者にはそれぞれ案内システムとして問題が存在する。
 2次元の地図は内部構造が複雑な屋内を表現することが難しく、地下鉄ホームなどの複雑な地形の案内に不向きである。
@@ -37,7 +133,7 @@
   \caption{リンクを利用したルートの表記例} \label{fig:ar_navigation_ad}
 \end{figure}
 
-\section{近隣施設の探索・推薦}
+\subsection{近隣施設の探索・推薦}
 
 本システムの大きな特徴としてWikiを利用することにより情報を階層化せずに関連情報を参照できる点が挙げられる。
 その結果以下のような探索がAR上で行える
@@ -48,7 +144,10 @@
 \end{itemize}
 上記のような能動的探索行為は目的地への案内のみを目的としている既存のアプリケーションでは体験できないものである。
 
-例えば神保町で本システムを利用した場合、ウィンタースポーツ用品店を選択すれば、「スノーボード」「スキー」といったいったリンクが出現する(図\ref{fig:ar_navigation_jibotyo_ski})。
+
+例として神保町のように様々な分野の店舗情報が登録される可能性が高い地域で本システムを利用する例を考える。
+% TODO:もう少し
+ウィンタースポーツ用品店を選択すれば、「スノーボード」「スキー」といったいったリンクが出現する(図\ref{fig:ar_navigation_jibotyo_ski})。
 ウィンタースポーツ用品店をめぐりたい場合はこれらのリンクを選択することでウィンタースポーツに関連する施設の情報を見ることができる。
 
 またその後食事をを取りたくなった場合、興味のある飲食店を選択することで「ラーメン」「カレー」等のリンクが出現し自身の食べたいものを絞り込み(図\ref{fig:ar_navigation_jibotyo_lunch})、他の情報と比較しながら探索できる。
@@ -60,17 +159,17 @@
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=60mm]{images/ar_navigation_jibotyo_ski.png}
-    \caption{スキーのリンクを選択した時} \label{fig:ar_navigation_jibotyo_ski}
+    \caption{スキーのリンクを選択した時のイメージ} \label{fig:ar_navigation_jibotyo_ski}
   \end{minipage}
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=60mm]{images/wip2.jpg}
-    \caption{飲食店を選択した時} \label{fig:ar_navigation_jibotyo_lunch}
+    \caption{飲食店を選択した時のイメージ} \label{fig:ar_navigation_jibotyo_lunch}
   \end{minipage}
 \end{figure}
 
 
-\section{学習教材としての利用}
+\subsection{学習教材としての利用}
 wikiはwikipediaに代表されるように膨大な史実や地理情報を整理し、記録するのに適したメディアであると言える。
 本システムではwikiの各ページに位置情報を記載するだけでページの情報をARでの表示できるため、地理情報を含む歴史や地理の教材として利用することが可能である。
 
@@ -84,7 +183,7 @@ wikiはwikipediaに代表されるように膨大な史実や地理情報を整�
 % TODO:移動機能での強み
 
 
-\section{リンクを利用した柔軟な参照}
+\subsection{リンクを利用した柔軟な参照}
 \label{link_enum_notation}
 本システムでは位置情報を記載したScrapboxページを作成することでAR情報を登録することができるが、それに加えて登録されたAR情報のリンクを利用した新しいページを作ることも可能である。
 
@@ -102,6 +201,6 @@ Scrapbox上では単にリンクを並べただけだが、HypAR Touchアプリ�
 \end{figure}
 
 
-\section{まとめ}
+\subsection{まとめ}
 本章では、本システムによって実現可能な、NFCタグによるインタラクションとリンクによる関連情報の表示機能を活かした利用例について述べた。
 タッチというわかりやすいインタラクション、Wikiの持つ拡張性などから、本章で述べた利用例に限らず様々な応用が可能であると考えられる。
