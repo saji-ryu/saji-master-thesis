@@ -99,6 +99,47 @@ AR情報が選択状態であるため、関連リンクである「ラーメン
 \subsection{湘南台での利用例}
 この利用例は湘南台の小田急改札から本システムを利用してSFCに向かうバスに乗るユースケースを想定したものである。
 
+図\ref{fig:shonandai_bus_exit1}は湘南台駅の小田急改札前で左側(西側)を向いたときの本システムの様子である。
+この時点で西口方面にはARで西口バスのりばの表示が出ている。
+さらにこの情報を選択した状態が図\ref{fig:shonandai_bus_exit_selected}である。ここではリンクされた情報として「バス」「バスのりば」「SFC」という3つが表示されている。
+このことからこのバス乗り場がSFCに向かうバス停であることがわかる。
+今回はリンクによる検索を行っていないがこのAR情報は「SFC」という単語からも関連情報として表示されるのでSFCにはじめて来るユーザでも迷うことなくバス停の場所がわかる。
+さらにこのAR情報を選択した状態で移動ボタンを押し、バス停付近の様子をVRで見ているのが図\ref{fig:shonandai_bus_moved}である。
+今回の例のようにユーザが地下にいて目的地である地上の様子がわからない時などは、この移動機能を利用することで現地の様子を確認することができる。
+この事により万が一目的地付近で迷っても、この情報を元に景色から正確な目的地が判別できる。
+また図\ref{fig:shonandai_bus2}はバス停からは少し遠い出口から地上に出た地点から案内を見た時の様子である。
+この場合も図\ref{fig:shonandai_bus_exit1}同様にバス停の位置を正しく表示している。
+本システムはアプリの起動や案内がタッチするだけですぐに行なえるため、少しでも不安になったら付近のタグにタッチして再確認する事ができる。
+このようにタッチというインタラクションだけですぐに新しい案内に更新できることは地理感覚のない土地での案内では非常に有用である。
+
+
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/shonandai_bus_exit1.png}
+    \caption{湘南台駅(地下)からの案内} \label{fig:shonandai_bus_exit1}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/shonandai_bus_exit_selected.png}
+    \caption{バス停の情報を選択した時} \label{fig:shonandai_bus_exit_selected}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/shonandai_bus_moved.png}
+    \caption{「丸一」を選択した時} \label{fig:shonandai_bus_moved}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \centering
+    \includegraphics[width=60mm]{images/shonandai_bus2.png}
+    \caption{「ラーメン」というリンクを選択した時} \label{fig:shonandai_bus2}
+  \end{minipage}
+\end{figure}
+
+
 \section{応用例}
 前節での実際の利用を踏まえ考えられる利用例及び応用例をまとめ、その利点を記載する。
 
@@ -146,11 +187,15 @@ AR情報が選択状態であるため、関連リンクである「ラーメン
 
 
 例として神保町のように様々な分野の店舗情報が登録される可能性が高い地域で本システムを利用する例を考える。
-% TODO:もう少し
-ウィンタースポーツ用品店を選択すれば、「スノーボード」「スキー」といったいったリンクが出現する(図\ref{fig:ar_navigation_jibotyo_ski})。
-ウィンタースポーツ用品店をめぐりたい場合はこれらのリンクを選択することでウィンタースポーツに関連する施設の情報を見ることができる。
+% TODO:以下すこし一般化したい
+本システムのユーザが神保町にウィンタースポーツ用品を買いに来ていたと仮定する。
+神保町には多くのウィンタースポーツ用品店があるため、これらを比較しながら巡りたいと考える可能性は高い。
+このような場合ARでの表示情報からウィンタースポーツ用品店を選択すれば、「スノーボード」「スキー」といったいったリンクが出現する(図\ref{fig:ar_navigation_jibotyo_ski})。
+ウィンタースポーツ用品店をめぐりたい場合はこれらのリンクを選択することで各店舗を比較しながら見ることができる。
 
-またその後食事をを取りたくなった場合、興味のある飲食店を選択することで「ラーメン」「カレー」等のリンクが出現し自身の食べたいものを絞り込み(図\ref{fig:ar_navigation_jibotyo_lunch})、他の情報と比較しながら探索できる。
+その後同じく神保町で食事をを取りたくなったとする。
+本システムではウィンタースポーツ用品店の情報も飲食店の情報もおなじWikiプロジェクトに含まれているため先程とおなじタグから飲食店の探索ができる。
+実際に、興味のある飲食店を選択する(図\ref{fig:ar_navigation_jibotyo_lunch})ことで「ラーメン」「カレー」等のリンクが出現し自身の食べたいものを絞り込み(図\ref{fig:ar_navigation_jibotyo_link})、他の情報と比較しながら探索できる。
 
 このように本システムは様々な施設の情報が混在していてもリンクを選択していくことで自分の求める情報を探索でき、既存のARナビゲーションアプリケーションにない魅了を持った非常に拡張性も高いシステムであると言える。
 
@@ -166,6 +211,12 @@ AR情報が選択状態であるため、関連リンクである「ラーメン
     \includegraphics[width=60mm]{images/wip2.jpg}
     \caption{飲食店を選択した時のイメージ} \label{fig:ar_navigation_jibotyo_lunch}
   \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=60mm]{images/wip2.png}
+  \caption{カレーで絞り込みをしている様子} \label{fig:ar_navigation_jibotyo_link}
 \end{figure}
 
 
@@ -185,14 +236,22 @@ wikiはwikipediaに代表されるように膨大な史実や地理情報を整�
 
 \subsection{リンクを利用した柔軟な参照}
 \label{link_enum_notation}
-本システムでは位置情報を記載したScrapboxページを作成することでAR情報を登録することができるが、それに加えて登録されたAR情報のリンクを利用した新しいページを作ることも可能である。
+本システムでは位置情報を記載したScrapboxページを作成することでAR情報を登録することができるが、それに加えて登録されたAR情報のリンクを利用し新しいページを作ることも可能である。
 
-例えば渋谷からSFCのキャンパスまでの経路を記述したい場合は図のように登録した場所のリンクを列挙すること表現することができる。
-Scrapbox上では単にリンクを並べただけだが、HypAR Touchアプリ側では図(準備中)のように通るべきポイントがARで表示される。
+例えば渋谷からSFCのキャンパスまでの経路を記述したい場合、図のように登録した場所のリンクを列挙すること表現することができる。
+Scrapbox上では単にリンクを並べただけだが、HypAR Touchアプリ側では図(準備中)のように通るべきポイントがARで表示されるようになる。
 
-% TODO:博物館的な案内もかける
+このようにユーザが場所の参照をリンクで書きながらページを作るだけで容易にルート表示や場所のリストを作成することが可能である。
+実際に同じような記法で以下のような用途で利用できると考える。
 
-このような書き方はユーザによって簡単に行えるだけでなく、表記の揺れにも強いという利点を持っている。
+\begin{itemize}
+  \item 博物館などでの順路表示
+  \item 観光地の行く予定のリスト
+  \item 乗り換え案内
+\end{itemize}
+
+簡単なリンクによる参照と列挙だけで上記のような用途に合ったAR表示を作成できることはAR情報の管理にWikiを採用した大きな利点である。
+
 
 \begin{figure}[h]
   \centering
