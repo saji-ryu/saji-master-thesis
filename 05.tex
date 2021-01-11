@@ -130,12 +130,12 @@ AR情報が選択状態であるため、関連リンクである「ラーメン
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=60mm]{images/shonandai_bus_moved.png}
-    \caption{「丸一」を選択した時} \label{fig:shonandai_bus_moved}
+    \caption{バス停付近からの視点} \label{fig:shonandai_bus_moved}
   \end{minipage}
   \begin{minipage}{0.5\hsize}
     \centering
     \includegraphics[width=60mm]{images/shonandai_bus2.png}
-    \caption{「ラーメン」というリンクを選択した時} \label{fig:shonandai_bus2}
+    \caption{地上出口からの案内} \label{fig:shonandai_bus2}
   \end{minipage}
 \end{figure}
 
@@ -156,22 +156,21 @@ AR情報が選択状態であるため、関連リンクである「ラーメン
 そのため駅の出口だけを案内したり(図:\ref{fig:ar_navigation_exit})広告として特定店舗だけを案内したり(図:\ref{fig:ar_navigation_ad})といった特定の用途に特化した案内をすることも可能である。
 
 \begin{figure}[h]
-  \begin{minipage}{0.5\hsize}
-    \centering
-    \includegraphics[width=60mm]{images/ar_navigation_shonandai.jpg}
-    \caption{案内の様子} \label{fig:ar_navigation_shonandai}
-  \end{minipage}
-  \begin{minipage}{0.5\hsize}
-    \centering
-    \includegraphics[width=60mm]{images/wip2.jpg}
-    \caption{出口だけの案内} \label{fig:ar_navigation_exit}
-  \end{minipage}
+  \centering
+  \includegraphics[width=60mm]{images/ar_navigation_shonandai.jpg}
+  \caption{案内の様子} \label{fig:ar_navigation_shonandai}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=60mm]{images/wip2.jpg}
-  \caption{リンクを利用したルートの表記例} \label{fig:ar_navigation_ad}
+  \includegraphics[width=120mm]{images/ar_navigation_exit.png}
+  \caption{出口だけの案内} \label{fig:ar_navigation_exit}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=120mm]{images/ar_filter_famima.png}
+  \caption{コンビニだけをフィルタした様子} \label{fig:ar_navigation_ad}
 \end{figure}
 
 \subsection{近隣施設の探索・推薦}
@@ -208,14 +207,14 @@ AR情報が選択状態であるため、関連リンクである「ラーメン
   \end{minipage}
   \begin{minipage}{0.5\hsize}
     \centering
-    \includegraphics[width=60mm]{images/wip2.jpg}
+    \includegraphics[width=60mm]{images/ar_navigation_jibotyo_lunch.png}
     \caption{飲食店を選択した時のイメージ} \label{fig:ar_navigation_jibotyo_lunch}
   \end{minipage}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=60mm]{images/wip2.jpg}
+  \includegraphics[width=100mm]{images/ar_navigation_jibotyo_link.png}
   \caption{カレーで絞り込みをしている様子} \label{fig:ar_navigation_jibotyo_link}
 \end{figure}
 
@@ -231,8 +230,26 @@ wikiはwikipediaに代表されるように膨大な史実や地理情報を整�
 さらに本システムでは第3章で述べた通り現在地からのAR表示だけでなく選択されたAR情報の場所に視点を移動する事が可能である。
 この機能によって実際の場所にいなくとも関連情報を元に視点を切り替えながら史跡を見ることが可能である。
 
-% TODO:移動機能での強み
+教育現場などでこの視点移動機能を利用すれば、実際の景色を見ながら史跡や史実の勉強をすることができる。
+一例として日本史上の事件である、禁門の変について学んでいると仮定した際の例を考える。
+図\ref{ar_kinmon}のように「禁門の変」というページを選択するとこの事件に関連のある場所がARで表示される。
+表示された情報を選択すると今度はその場所の情報を見ることができる(図\ref{ar_yashiki})。
+またAR情報の編集環境としてWikiシステムを採用しているため先生や学生が内容を登録したり加筆することも容易である.
 
+アクティブラーニングの推進が求められている中で本システムのこのような特徴は有効な学習ツールとなり得る。
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=120mm]{images/ar_kinmon.png}
+  \caption{「禁門の変」を選択した際の様子} \label{fig:ar_kinmon}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=60mm]{images/ar_yashiki.png}
+  \caption{詳細説明を見る様子} \label{fig:ar_yashiki}
+\end{figure}
 
 \subsection{リンクを利用した柔軟な参照}
 \label{link_enum_notation}
