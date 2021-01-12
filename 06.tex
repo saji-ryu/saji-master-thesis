@@ -27,7 +27,7 @@ Feinerらが開発したA Touring Machine\cite{629922}はヘッドマウント�
 ナビゲーションでの表示やシステム構成などが現在のARナビゲーションアプリに通ずる一方で、GPSと磁気センサによる位置測位には精度の面で課題があった。
 また当時の技術ではヘッドマウント・ディスプレイとコンピュータを小型化することが難しかったため、図\ref{fig:a_touring_machine_pc}のように装備が大きく、屋外で常用することは現実的でなかった。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{minipage}{0.5\hsize}
     \centering 
     \includegraphics[height=60mm]{images/a_touring_machine_ar.png}
@@ -47,7 +47,7 @@ FeinerらがKnowledge-based augmented reality\cite{10.1145/159544.159587}で提�
 位置測位には超音波センサを利用しており、正確な位置測位と情報の投影が可能である。
 一方で高価で大型な超音波センサをすべての対象に取り付ける必要があり、現実的に利用するにはより小型で安価な測位システムを導入する必要があった。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=150mm]{images/karma.jpg}
   \caption{KARMA} \label{fig:karma}
@@ -63,7 +63,7 @@ HöllererらによるMARS\cite{MARS}は上記の「A Touring Machine」及び「
 このように屋外でのナビゲーションを編集する環境として屋内でのAR環境を利用し、屋内と屋外のARビューに相互作用をもたせる方式はユーザのAR情報編集の体験向上に大きく寄与する。
 また編集環境の状態がインタラクティブにARでの情報に作用するという点は本研究とも関連がある。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{minipage}{0.5\hsize}
     \centering 
     \includegraphics[height=60mm]{images/mars_ar.png}
@@ -77,7 +77,7 @@ HöllererらによるMARS\cite{MARS}は上記の「A Touring Machine」及び「
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[height=60mm]{images/mars_ar_indoor.png}
   \caption{屋内での利用} \label{fig:mars_ar_indoor}
@@ -90,7 +90,7 @@ HöllererらによるMARS\cite{MARS}は上記の「A Touring Machine」及び「
 そのためこの手法は屋内での位置測位に有利であると言える。
 カローコードに位置情報以外のコンテキスト情報を埋め込むことが可能である点も既存の測位システムにない特徴であった。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[height=70mm]{images/NaviCam.png}
   \caption{NaviCam} \label{fig:NaviCam}
@@ -110,12 +110,12 @@ KasprzakらはFeature-Based Indoor Navigation Using Augmented Reality\cite{65977
 \end{itemize}
 またこのプロトタイプシステムでは事前に選択した目的地に正確に早く到着することに主眼を置いており、本システムのようにハイパーリンクによる関連情報から周辺情報を探索する用途は考えられていない。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=70mm]{images/FBINUAR_image.png}
   \caption{特徴量による画像認識} \label{fig:FBINUAR_image}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=70mm]{images/FBINUAR_ar.png}
   \caption{矢印による案内} \label{fig:FBINUAR_ar}
@@ -137,7 +137,7 @@ Web上のツールからユーザが情報を追加でき、ARとして反映さ
   \item AR情報同士のハイパーリンクを記述するのが難しい
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[width=120mm]{images/Wikitude.png}
   \caption{Wikitude} \label{fig:Wikitude}
@@ -174,7 +174,7 @@ FaridらによるRecent Advances in Wireless Indoor Localization Techniques and 
 一方本研究で提案したNFCタグによる位置測位はユーザがNFCタグにタッチしなくてはならない点を除くと低コストで正確な位置測位が可能である。
 位置測位以外にもNFCタグにコンテキスト情報の結びつけが行える点やタグにタッチするだけでアプリの起動を行えることを踏まえれば十分に有用な位置測位方式であると言える。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[width=120mm]{images/IndoorLocalization.png}
   \caption{屋内での位置測位手法の比較} \label{fig:IndoorLocalization}
@@ -188,7 +188,7 @@ App ClipsはNFCタグやQRコードの読み込みや位置情報をトリガに
 これは上記のようなユーザの位置測位システムを統合しコンテキスト把握に活かしているシステムと言える。
 またNFCタグやQRの読み込みからアプリケーションの起動を行う点は本システムと類似している。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=90mm]{images/appClips.png}
   \caption{App Clips} \label{fig:appClips}
@@ -221,7 +221,7 @@ OzdenizciらはDevelopment of an Indoor Navigation System Using NFC Technology\c
 また屋内での位置測位にNFCタグを利用することの利点としてコストが少ない点、正確な位置と向きの情報が得られる点、通信の応答時間が短い点などを挙げており、これらは本研究でNFCタグによるインタラクションを採用した理由と合致する。
 一方でユーザへの情報提示が地図とテキストベースである点、目的地へ最短でたどり着くことに主眼をおいている点が本研究と大きく異なると言える。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[width=150mm]{images/NFC_Internal.png}
   \caption{NFC Internalのイメージ} \label{fig:NFC_Internal}
@@ -258,7 +258,7 @@ VannotatoRはホロコーストに関連する資料を整理し、可視化す�
   \item HypAR Touchでは文字情報でのみハイパーリンクを形成する
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=90mm]{images/VAnnotatoR.png}
   \caption{VAnnotatoRでのAR表示} \label{fig:VAnnotatoR}
@@ -278,7 +278,7 @@ WIKIHIKEのAR機能は、位置情報の記載されているWikiページをAR�
   \item 情報元はWikipediaでありシステムとしてAR情報の編集機能を有していない
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=80mm]{images/wikihike.png}
   \caption{HyperRealでのAR表示} \label{fig:wikihike}
@@ -290,13 +290,13 @@ RomeroらによるHyperRealは\cite{10.1145/900051.900055}仮想現実並びに�
 またプロトタイプでは博物館の案内アプリケーションを作成しており、ARで大まかな情報提示(図\ref{fig:HyperReal_ar})を行った上で詳細を仮想空間で補足する(図図\ref{fig:HyperReal_vr})ようなインターフェースを備えている。
 このアイデアは本研究におけるAR情報付近へのワープ機能と類似が見られる。
 一方で本研究のようにARで提示する情報の編集環境などには重点を置いておらず、あくまでも時間などを含めた複雑なハイパーメディアの構築に主眼をおいた研究である。
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=80mm]{images/HyperReal_ar.png}
   \caption{HyperRealでのAR表示} \label{fig:HyperReal_ar}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[height=80mm]{images/HyperReal_vr.png}
   \caption{HyperRealでのVR表示} \label{fig:HyperReal_vr}
@@ -324,7 +324,7 @@ Magicbookでは実際の本を利用し、本にマーカーを埋め込むこ�
 MagicBookのARからVRへとシームレスに切り替えることでより詳細な情報を表示するという考えは本システムの移動機能に類似点が見られる。
 一方で、本研究での移動はあくまでも場所から場所への移動による探索を主眼としているに対し、MagicBookは1つのAR情報を更に細く補足する形でVRを展開しているという点で用途が異なる。
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering 
   \includegraphics[width=120mm]{images/MagicBook.png}
   \caption{MagicBookでのAR（左）とVR（右）} \label{fig:MagicBook}
