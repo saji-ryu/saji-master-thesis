@@ -268,7 +268,7 @@ WikiはWikipediaに代表されるように膨大な史実や地理情報を整�
 本システムでは位置情報を記載したScrapboxページを作成することでAR情報を登録することができるが、それに加えて登録されたAR情報のリンクを利用し新しいページを作ることも可能である。
 
 例えば渋谷からSFCのキャンパスまでの経路を記述したい場合、図のように登録した場所のリンクを列挙すること表現することができる。
-Scrapbox上では単にリンクを並べただけだが、HypAR Touchアプリ側では図(TODO:)のように通るべきポイントがARで表示されるようになる。
+Scrapbox上では単にリンクを並べただけだが、HypAR Touchアプリ側では図(\ref{fig:ar_route_sfc})のように通るべきポイントがARで表示されるようになる。
 
 このように登録された場所をリンクで参照しながらページを作るだけで容易にルート表示や場所のリストを作成することが可能である。
 そのため、以下のような用途で活用することができる。
@@ -280,6 +280,12 @@ Scrapbox上では単にリンクを並べただけだが、HypAR Touchアプリ�
 \end{itemize}
 
 簡単なリンクによる参照と列挙だけでそれぞれの用途に合ったAR表示を作成できる点は情報の管理にWikiを採用した大きな利点である。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=100mm]{images/ar_route_sfc.png}
+  \caption{SFCまでの通過ポイントが表示される} \label{fig:ar_route_sfc}
+\end{figure}
 
 
 \begin{figure}[H]
